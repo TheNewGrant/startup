@@ -1,4 +1,4 @@
-# Your startup name here
+# Church-time Bingo
 
 [My Notes](notes.md)
 
