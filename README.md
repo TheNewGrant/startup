@@ -39,9 +39,11 @@ I am going to use the required technologies in the following ways.
 
 - **HTML** - Use correct HTML structure and semantics for my application with three pages: One for login, another to customize and start a bingo game, and a third to play bingo. Hyperlinks will navigate between different pages/views.
 - **CSS** - Pretty up each page with a consistent art theme with calm colors. Support styling for both mobile and desktop device screen sizes. Be utilized in conjunction with a 3rd party api to make each bingo tile unique (see Service).
-- **React** - Description here
-- **Service** - Backend service
+- **React** - Provide login and game setup, generate unique bingo cards based off of user preferences, tracking checked-off tiles, display other users' scores. Bingo page reactive to user's actions.
+- **Service** - Backend service 
   - Generate unique icons for each bingo tile with [Iconify](https://iconify.design/docs/api/)
+  - Register, login, and logout users. Credentials are stored in a database.
+  - Submitting and retrieving bingo scores
 - **DB/Login** - Store authentication information, users, bingo progress, scores, and friends in the MongoDB database.
 - **WebSocket** - As users mark off tiles on their bingo cards, other users in the same game will be alerted of their progress. 
 
