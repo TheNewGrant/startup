@@ -37,10 +37,11 @@ sequenceDiagram
 
 I am going to use the required technologies in the following ways.
 
-- **HTML** - Description here
-- **CSS** - Description here
+- **HTML** - Use correct HTML structure and semantics for my application with three pages: One for login, another to customize and start a bingo game, and a third to play bingo. Hyperlinks will navigate between different pages/views.
+- **CSS** - Pretty up each page with a consistent art theme with calm colors. Support styling for both mobile and desktop device screen sizes. Be utilized in conjunction with a 3rd party api to make each bingo tile unique (see Service).
 - **React** - Description here
-- **Service** - Description here
+- **Service** - Backend service
+  - Generate unique icons for each bingo tile with [Iconify](https://iconify.design/docs/api/)
 - **DB/Login** - Description here
 - **WebSocket** - Description here
 
