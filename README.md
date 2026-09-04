@@ -42,8 +42,8 @@ I am going to use the required technologies in the following ways.
 - **React** - Description here
 - **Service** - Backend service
   - Generate unique icons for each bingo tile with [Iconify](https://iconify.design/docs/api/)
-- **DB/Login** - Description here
-- **WebSocket** - Description here
+- **DB/Login** - Store authentication information, users, bingo progress, scores, and friends in the MongoDB database.
+- **WebSocket** - As users mark off tiles on their bingo cards, other users in the same game will be alerted of their progress. 
 
 ## 🚀 Specification Deliverable
 
