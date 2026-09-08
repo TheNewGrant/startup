@@ -4,8 +4,7 @@ This file represents what I have learned about web programming. And truly, I can
 
 > _Whatever I put in here can be used for the midterm and final_, so I need to be updating this often with my insights! My game plan for this is to note any useful keywords from HTML, CSS, Javascript and so on that I think I'll want to remember for my startup project, but I will also write down useful notes and commands for git and other topics covered in the course.
 
-
-
+> Here is a link to the markdown [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) for reference.
 
 - [My startup](https://startup.cs260.click)
 - [My simon](https://simon.cs260.click)

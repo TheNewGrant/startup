@@ -4,9 +4,6 @@
 
 Church-time Bingo is a web game meant to help people who struggle to focus during church garner more out of their experience by giving them a bingo board of open-ended topics for them to look out for and pay attention to during church. With an emphasis in testimony meetings and general conference events, users are allowed to make and join games for the duration of the church reunion with their friends so they can work together to complete bingo boards. 
 
-> [!NOTE]
-> If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
-
 ### Elevator pitch
 
 Have you ever gone to a church service and after a few hours of sitting there listening to lessons realized that you retained none of it? Do you find your mind wandering while people bear their testimonies or find yourself forgetting what people said as soon as they say it? Church-time Bingo makes it so you worship with a purpose, giving you a bingo sheet of gospel topics or scriptures to look out for during church. As you pay attention and put in extra effort to register and recognize what is being shared, you will find your bingo sheet filled out with the gospel lessons that you were meant to learn that week. And after church ends, you can compare your bingo boards with your friends and discuss everyones unique insights to inspire continual gospel learning. 
