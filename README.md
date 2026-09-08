@@ -18,13 +18,20 @@ Have you ever gone to a church service and after a few hours of sitting there li
 
 ![Design image](placeholder.png)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Here is a diagram that shows how people would interact with the backend to see each other's scores.
 
 ```mermaid
 sequenceDiagram
-    actor You
-    actor Website
-    You->>Website: Replace this with your design
+    actor Bob
+    actor Alice
+    actor  James
+    participant Server
+    Bob->>Server: Score Bingo
+    Server-->> Alice: Bob Scored a Bingo
+    Server-->> James: Bob Scored a Bingo
+    Alice->>Server: Topic Complete
+    Server -->> Bob: Alice Completed a Topic
+    Server-->> James: Alice Completed a Topic
 ```
 
 ### Key features
