@@ -5,9 +5,6 @@
 Church-time Bingo is a web game meant to help people who struggle to focus during church garner more out of their experience by giving them a bingo board of open-ended topics for them to look out for and pay attention to during church. With an emphasis in testimony meetings and general conference events, users are allowed to make and join games for the duration of the church reunion with their friends so they can work together to complete bingo boards. 
 
 > [!NOTE]
-> This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
-
-> [!NOTE]
 > If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
 
 ### Elevator pitch
