@@ -36,6 +36,7 @@ sequenceDiagram
 - Secure login over HTTPS
 - Ability to choose bingo card difficulty
 - Generation and display of bingo board
+- Ability to host and join bingo games
 - Ability to select and check off bingo tiles
 - Scores and notable progress of users shown in real time
 - Results/Scores are persistently stored
