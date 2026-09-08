@@ -12,7 +12,7 @@ A brief description of the application here. Lorem ipsum dolor sit amet, consect
 
 ### Elevator pitch
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Have you ever gone to a church service and after a few hours of sitting there listening to lessons realized that you retained none of it? Do you find your mind wandering while people bear their testimonies or find yourself forgetting what people said as soon as they say it? Church-time Bingo makes it so you worship with a purpose, giving you a bingo sheet of gospel topics or scriptures to look out for during church. As you pay attention and put in extra effort to register and recognize what is being shared, you will find your bingo sheet filled out with the gospel lessons that you were meant to learn that week. And after church ends, you can compare your bingo boards with your friends and discuss everyones unique insights to inspire continual gospel learning. 
 
 ### Design
 
