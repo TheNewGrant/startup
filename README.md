@@ -9,8 +9,11 @@ Church-time Bingo is a web game meant to help people who struggle to focus durin
 Have you ever gone to a church service and after a few hours of sitting there listening to lessons realized that you retained none of it? Do you find your mind wandering while people bear their testimonies or find yourself forgetting what people said as soon as they say it? Church-time Bingo makes it so you worship with a purpose, giving you a bingo sheet of gospel topics or scriptures to look out for during church. As you pay attention and put in extra effort to register and recognize what is being shared, you will find your bingo sheet filled out with the gospel lessons that you were meant to learn that week. And after church ends, you can compare your bingo boards with your friends and discuss everyones unique insights to inspire continual gospel learning. 
 
 ### Design
+Here are designs for the webpage fitted for computer, laptop, and mobile screen sizes:
 
-![Design image](placeholder.png)
+![Login Page](bingo-login.jpg)
+![Setup Page](bingo-setup.jpg)
+![Game Page](bingo-game.jpg)
 
 Here is a diagram that shows how people would interact with the backend to see each other's scores.
 
