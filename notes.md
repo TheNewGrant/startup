@@ -43,6 +43,10 @@ With Route53 my server is set up so I can type in:
 Route53 - Hosted Zones - churchbingo260.click - Create Record (lets me specify other subdomains for my server)
 Route53 - Domains - Registered Domains (lets me register new domains to use for websites)
 
+### Caddy
+Forward Proxy - Hides client - Filtering/Anonymity
+Reverse Proxy - Hides server - Balancing loads
+
 ## HTML
 
 Interesting things I have learned about HTML
