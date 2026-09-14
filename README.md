@@ -70,9 +70,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Rented EC2 server** - I did not complete this part of the deliverable.
-- [ ] **Leased domain name** - I did not complete this part of the deliverable.
-- [ ] **Server accessible** from my domain: [https://yourdomainnamehere.click](https://yourdomainnamehere.click) - I did not complete this part of the deliverable.
+- [x] **Rented EC2 server** - I got a t3.micro
+- [x] **Leased domain name** - churchbingo260.click is what I chose
+- [x] **Server accessible** from my domain: [https://churchbingo260.click](https://churchbingo260.click) - It's working perfectly!
 
 ## 🚀 HTML deliverable
 
