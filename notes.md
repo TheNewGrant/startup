@@ -35,6 +35,14 @@ Important notes to keep in mind:
 ### DNS
 DNS stands for Domain Name System. It connects IP addresses (computer readable numbers) to domain names (human readable words). When you type a domain name such as [google.com](https://google.com) into your browser, the browser will attempt to find the IP address using the DNS.
 
+### Route53
+NS = Name Server; SOA = Start of Authority
+With Route53 my server is set up so I can type in:
+[churchbingo260.click](http://churchbingo260.click) or [simon.churchbingo260.click](http://simon.churchbingo260.click) and it still works.
+
+Route53 - Hosted Zones - churchbingo260.click - Create Record (lets me specify other subdomains for my server)
+Route53 - Domains - Registered Domains (lets me register new domains to use for websites)
+
 ## HTML
 
 Interesting things I have learned about HTML
