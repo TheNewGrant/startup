@@ -17,6 +17,7 @@ This file represents what I have learned about web programming. And truly, I can
 
 ## AWS
 
+### EC2
 Important notes to keep in mind:
   
   My IP address: 3.217.224.89
@@ -30,6 +31,9 @@ Important notes to keep in mind:
 : ssh -i MacOS/.../key.pem ubuntu@3.217.224.89    
     # Mostly filled, just change the filepath to the correct key pair
 ```
+
+### DNS
+DNS stands for Domain Name System. It connects IP addresses (computer readable numbers) to domain names (human readable words). When you type a domain name such as [google.com](https://google.com) into your browser, the browser will attempt to find the IP address using the DNS.
 
 ## HTML
 
