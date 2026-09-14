@@ -17,7 +17,19 @@ This file represents what I have learned about web programming. And truly, I can
 
 ## AWS
 
-Interesting things I have learned about AWS
+Important notes to keep in mind:
+  
+  My IP address: 3.217.224.89
+  
+  AWS - EC2 - Instances (to see the computer I connect to for my website)
+  
+  AWS - EC2 - Network & Security - Elastic IPs (to see the IP I reserved for my website)
+
+```
+: ssh -i [key pair file address] ubuntu@[ip address] # Template
+: ssh -i MacOS/.../key.pem ubuntu@3.217.224.89    
+    # Mostly filled, just change the filepath to the correct key pair
+```
 
 ## HTML
 
