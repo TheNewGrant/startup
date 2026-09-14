@@ -44,8 +44,16 @@ Route53 - Hosted Zones - churchbingo260.click - Create Record (lets me specify o
 Route53 - Domains - Registered Domains (lets me register new domains to use for websites)
 
 ### Caddy
-Forward Proxy - Hides client - Filtering/Anonymity
-Reverse Proxy - Hides server - Balancing loads
+Forward Proxy - Hides client - Filtering/Anonymity - Gateway into the internet
+Reverse Proxy - Hides server - Balancing loads - Protects traffic from the internet
+
+With the new domain name, I can change how I SSH into the server.
+```
+: ssh -i MacOS/.../key.pem ubuntu@churchbingo260.click   
+    # Mostly filled, just change the filepath to the correct key pair
+```
+
+Let's Encrypt changed the game for receiving web certificates for HTTPS access.
 
 ## HTML
 
