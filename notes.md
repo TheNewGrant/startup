@@ -6,8 +6,8 @@ This file represents what I have learned about web programming. And truly, I can
 
 > Here is a link to the markdown [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) for reference.
 
-- [My startup](https://startup.cs260.click)
-- [My simon](https://simon.cs260.click)
+- [My startup](https://startup.churchbingo260.click)
+- [My simon](https://simon.churchbingo260.click)
 
 ## Helpful links
 
@@ -97,6 +97,11 @@ Media elements are:
  To embed Youtube videos - you need to use the *iframe* tag
  The *src* attribute is used to add images/audio/videos
  the *canvas* tag needs Javascript to display
+
+
+
+ DOM = Document Object Model - This is how the HTML file is parsed and interpreted to make the website
+ The DOM works like a system of nodes (think Godot and its node-based structure) and CSS and Javascript manipulates those nodes.
 
 ## React
 
