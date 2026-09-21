@@ -83,6 +83,20 @@ Example form usage:
 *name*, *disabled*, *value*, *required* attributes are all common to input tags
 You can use the *pattern* attribute to use Regex to validate input and make sure it follows a specific format
 
+### Media
+
+Media elements are:
+ - img
+ - audio
+ - video
+ - svg
+ - canvas
+
+ Note: Keep URL/file references as relative as possible to prevent breakage
+
+ To embed Youtube videos - you need to use the *iframe* tag
+ The *src* attribute is used to add images/audio/videos
+ the *canvas* tag needs Javascript to display
 
 ## React
 
