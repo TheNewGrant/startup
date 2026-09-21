@@ -57,7 +57,32 @@ Let's Encrypt changed the game for receiving web certificates for HTTPS access.
 
 ## HTML
 
-Interesting things I have learned about HTML
+### Input - Forms
+
+Input Elements are:
+ - form
+ - fieldset
+ - input
+ - select
+ - optgroup
+ - option
+ - textarea
+ - label
+ - output
+ - meter
+
+Example form usage:
+```<form>
+    <label for="learning">Practice Form</label>
+    <textarea id="learning" name="learning-id">Input Here</textarea>
+    <button type="submit">Submit</button>
+    </form>
+
+    <input></input> <!-- Highly customizable -->
+```
+*name*, *disabled*, *value*, *required* attributes are all common to input tags
+You can use the *pattern* attribute to use Regex to validate input and make sure it follows a specific format
+
 
 ## React
 
