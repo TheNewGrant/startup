@@ -9,6 +9,8 @@ This file represents what I have learned about web programming. And truly, I can
 - [My startup](https://startup.churchbingo260.click)
 - [My simon](https://simon.churchbingo260.click)
 
+> To deploy my project. Using the deployFiles.sh file, input into the terminal the following command (filling in the blanks): ```./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s startup```. If an error occurs, use the following command to fix it (this will probably happen since I have a mac): ```sudo chmod +x deployFiles.sh```
+
 ## Helpful links
 
 - [Course instruction](https://github.com/webprogramming260)

@@ -12,13 +12,13 @@
   <header>
     <h1>Church Bingo!</h1>
     <nav>
-      <menu>
+      <ul>
         <li><a href="index.html">Home</a></li>
         <li><a href="setup.html">Setup</a></li>
         <li><a href="bingo.html">Play</a></li>
         <li><a href="scores.html">Scores</a></li>
         <li><a href="about.html">About</a></li>
-      </menu>
+      </ul>
     </nav>
 
     <hr />
@@ -28,10 +28,12 @@
     <h1>Join to Play Bingo</h1>
     <form method="get" action="setup.html">
       <div>
-        <input type="text" placeholder="your@email.com" />
+        <label for="identify">Email</label>
+        <input id="identify" type="text" placeholder="your@email.com" />
       </div>
       <div>
-        <input type="password" placeholder="password" />
+        <label for="id-pass">Password</label>
+        <input id="id-pass" type="password" placeholder="password" />
       </div>
       <button type="submit">Login</button>
     </form>
