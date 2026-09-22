@@ -107,6 +107,11 @@ Media elements are:
  ### Implementation discoveries
  Use this link: https://api.iconify.design/fluent-emoji-flat/bacon.svg on an image tag to to see an svg from Iconify API. Just change the ```*.svg``` to see a different image (and there are a ton). You can also change ```fluent-emoji-flat``` to one on [This site (Github)](https://github.com/iconify/icon-sets/blob/master/json/fluent-emoji-flat.json) under ```icon-sets/json``` to see even more svgs.
 
+## CSS
+ ### Flex
+In class flex practice: [Flex Box Froggy](https://flexboxfroggy.com/)
+```display:flex;``` needs to go on the parent container to affect its children (does not affect itself)
+
 ## React
 
 Interesting things I have learned about React

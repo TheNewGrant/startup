@@ -1,244 +1,248 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <!-- Tell browsers not to scale the viewport automatically -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Church Bingo</title>
-  </head>
-  <body>
-    <header>
-      <h1>Play Bingo</h1>
-      <nav>
-        <menu>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="setup.html">Setup</a></li>
-          <li><a href="bingo.html">Play</a></li>
-          <li><a href="scores.html">Scores</a></li>
-          <li><a href="about.html">About</a></li>
-        </menu>
-      </nav>
-      <hr />
-    </header>
 
-    <main>
-      <p id="game-id"><b>Game ID:</b> 12345</p>
-      <div class="players">
-        <b>Player:</b>
-        <span class="player-name">Mason</span>
-      </div>
-      <ul class="notification">
-        <li class="player-name">Jeff joined the bingo game</li>
-        <li class="player-name">George scored a bingo</li>
-        <li class="player-name">Anna completed a category</li>
-      </ul>
-      <br />
+<head>
+  <meta charset="UTF-8" />
+  <!-- Tell browsers not to scale the viewport automatically -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Church Bingo</title>
+</head>
 
-      <div>
-        <label for="count">Score</label>
-        <input type="text" id="count" value="--" readonly />
-      </div>
+<body>
+  <header>
+    <h1>Play Bingo</h1>
+    <nav>
+      <menu>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="setup.html">Setup</a></li>
+        <li><a href="bingo.html">Play</a></li>
+        <li><a href="scores.html">Scores</a></li>
+        <li><a href="about.html">About</a></li>
+      </menu>
+    </nav>
+    <hr />
+  </header>
 
-      <br />
-      <br />
+  <main>
+    <p id="game-id"><b>Game ID:</b> 12345</p>
+    <div class="players">
+      <b>Player:</b>
+      <span class="player-name">Mason</span>
+    </div>
+    <ul class="notification">
+      <li class="player-name">Jeff joined the bingo game</li>
+      <li class="player-name">George scored a bingo</li>
+      <li class="player-name">Anna completed a category</li>
+    </ul>
+    <br />
 
-      <div>
-        <!-- Bingo Table: The images in each square come from the API I intend to use (Iconify) -->
-        <table>
-          <tr>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/alarm-clock.svg" />
-                <p>Neighbor falls asleep</p>
+    <div>
+      <label for="count">Score</label>
+      <input type="text" id="count" value="--" readonly />
+    </div>
 
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/bacon.svg" />
-                <p>Child caught snacking</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/boy-medium.svg" />
-                <p>Boy bears testimony</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/balloon.svg" />
-                <p>Speaker off topic</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/bat.svg" />
-                <p>Animal/Insect distraction</p>
-                
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/blue-book.svg" />
-                <p>Book of Mormon cited</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/call-me-hand.svg" />
-                <p>Phone rings</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/castle.svg" />
-                <p>Topic: Heaven</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/cinema.svg" />
-                <p>Church activity mentioned</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/crayon.svg" />
-                <p>Child coloring</p>
-                
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/dna.svg" />
-                <p>Topic: Family History</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/face-with-raised-eyebrow.svg" />
-                <p>Questionable topic mentioned</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/female-sign.svg" />
-                <p>Woman bears testimony</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/flamingo.svg" />
-                <p>Pink article of clothing</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/frowning-face-with-open-mouth.svg" />
-                <p>Shocking turn of events</p>
-                
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/glasses.svg" />
-                <p>Glasses worn by speaker</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/guitar.svg" />
-                <p>Musical Number</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/hand-with-index-finger-and-thumb-crossed-medium.svg" />
-                <p>Coincidence/luck mentioned</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/heart-hands-medium.svg" />
-                <p>Topic: Love</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/hospital.svg" />
-                <p>Miracle story</p>
-                
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/infinity.svg" />
-                <p>Topic: Atonement</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/joker.svg" />
-                <p>Joke told (laughter required)</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/knot.svg" />
-                <p>Bow/Bracelet/Necklace article </p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/laptop.svg" />
-                <p>Phone used on podium</p>
-                
-              </button>
-            </td>
-            <td>
-              <button>
-                <img src="https://api.iconify.design/fluent-emoji-flat/light-blue-heart.svg" />
-                <p>Topic: Service</p>
-                
-              </button>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </main>
+    <br />
+    <br />
 
-    <footer>
-      <hr />
-      <span class="text-reset">Mason Grant</span>
-      <br />
-      <a href="https://github.com/TheNewGrant/startup">GitHub</a>
-    </footer>
-  </body>
+    <div>
+      <!-- Bingo Table: The images in each square come from the API I intend to use (Iconify) -->
+      <table>
+        <tr>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/alarm-clock.svg" />
+              <p>Neighbor falls asleep</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/bacon.svg" />
+              <p>Child caught snacking</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/boy-medium.svg" />
+              <p>Boy bears testimony</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/balloon.svg" />
+              <p>Speaker off topic</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/bat.svg" />
+              <p>Animal/Insect distraction</p>
+
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/blue-book.svg" />
+              <p>Book of Mormon cited</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/call-me-hand.svg" />
+              <p>Phone rings</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/castle.svg" />
+              <p>Topic: Heaven</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/cinema.svg" />
+              <p>Church activity mentioned</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/crayon.svg" />
+              <p>Child coloring</p>
+
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/dna.svg" />
+              <p>Topic: Family History</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/face-with-raised-eyebrow.svg" />
+              <p>Questionable topic mentioned</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/female-sign.svg" />
+              <p>Woman bears testimony</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/flamingo.svg" />
+              <p>Pink article of clothing</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/frowning-face-with-open-mouth.svg" />
+              <p>Shocking turn of events</p>
+
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/glasses.svg" />
+              <p>Glasses worn by speaker</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/guitar.svg" />
+              <p>Musical Number</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img
+                src="https://api.iconify.design/fluent-emoji-flat/hand-with-index-finger-and-thumb-crossed-medium.svg" />
+              <p>Coincidence/luck mentioned</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/heart-hands-medium.svg" />
+              <p>Topic: Love</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/hospital.svg" />
+              <p>Miracle story</p>
+
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/infinity.svg" />
+              <p>Topic: Atonement</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/joker.svg" />
+              <p>Joke told (laughter required)</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/knot.svg" />
+              <p>Bow/Bracelet/Necklace article </p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/laptop.svg" />
+              <p>Phone used on podium</p>
+
+            </button>
+          </td>
+          <td>
+            <button>
+              <img src="https://api.iconify.design/fluent-emoji-flat/light-blue-heart.svg" />
+              <p>Topic: Service</p>
+
+            </button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </main>
+
+  <footer>
+    <hr />
+    <span class="text-reset">Mason Grant</span>
+    <br />
+    <a href="https://github.com/TheNewGrant/startup">GitHub</a>
+  </footer>
+</body>
+
 </html>
