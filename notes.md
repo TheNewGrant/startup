@@ -110,6 +110,7 @@ Media elements are:
 ## CSS
  ### Flex
 In class flex practice: [Flex Box Froggy](https://flexboxfroggy.com/)
+
 ```display:flex;``` needs to go on the parent container to affect its children (does not affect itself)
 
 ## React
