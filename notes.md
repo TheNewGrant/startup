@@ -103,6 +103,10 @@ Media elements are:
  DOM = Document Object Model - This is how the HTML file is parsed and interpreted to make the website
  The DOM works like a system of nodes (think Godot and its node-based structure) and CSS and Javascript manipulates those nodes.
 
+
+ ### Implementation discoveries
+ Use this link: https://api.iconify.design/fluent-emoji-flat/bacon.svg on an image tag to to see an svg from Iconify API. Just change the ```*.svg``` to see a different image (and there are a ton). You can also change ```fluent-emoji-flat``` to one on [This site (Github)](https://github.com/iconify/icon-sets/blob/master/json/fluent-emoji-flat.json) under ```icon-sets/json``` to see even more svgs.
+
 ## React
 
 Interesting things I have learned about React
