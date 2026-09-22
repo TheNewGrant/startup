@@ -110,6 +110,31 @@ Media elements are:
  Use this link: https://api.iconify.design/fluent-emoji-flat/bacon.svg on an image tag to to see an svg from Iconify API. Just change the ```*.svg``` to see a different image (and there are a ton). You can also change ```fluent-emoji-flat``` to one on [This site (Github)](https://github.com/iconify/icon-sets/blob/master/json/fluent-emoji-flat.json) under ```icon-sets/json``` to see even more svgs.
 
 ## CSS
+
+### Selectors
+
+Styles will cascade from highest/farthest(other files) to lowest/closest(inline style attribute). They will also apply based on the specificity of the declaration with the order being from lowest to highest priority: 
+1) Universal Selector - '*'
+2) Element selectors - 'p'
+3) Class selectors - '.class'
+4) Id selectors - '#id'
+5) Inline styles - 'style=""'
+
+Content - Padding - Border - Margin
+
+Padding: Space between content and border
+Margin: Space between the rest of the page and the border
+
+Our CSS declarations that apply to an element will also apply to its children (font-family changes to body affect the rest of the page unless otherwise specified)
+
+#### Combinators
+ - Descendant: ```p h1``` - a space between selectors
+ - Child: ```p > span``` - direct children of a selector
+ - General Sibling: ```h1 ~ p``` - any selector(1) with a selector(2) sibling
+ - Adjacent Sibling: ```h1 + p``` - any selector(1) with an adjacent selector(2) sibling
+
+*** Research attribute selectors (p[class="test"]) to see what they are capable of
+
  ### Flex
 In class flex practice: [Flex Box Froggy](https://flexboxfroggy.com/)
 
