@@ -135,6 +135,22 @@ Our CSS declarations that apply to an element will also apply to its children (f
 
 *** Research attribute selectors (p[class="test"]) to see what they are capable of
 
+### Units
+Unit | Description
+-----|------------
+px | The number of pixels
+pt | The number of points (1/72 of an inch)
+in | The number of inches
+cm | The number of centimeters
+% | A percentage of the parent element
+em | A multiplier of the width of the letter m in the parent's font
+rem | A multiplier of the width of the letter m in the root's font
+ex | A multiplier of the height of the element's font
+vw | A percentage of the viewport's width
+vh | A percentage of the viewport's height
+vmin | A percentage of the viewport's smaller dimension
+vmax | A percentage of the viewport's larger dimension
+
  ### Flex
 In class flex practice: [Flex Box Froggy](https://flexboxfroggy.com/)
 
