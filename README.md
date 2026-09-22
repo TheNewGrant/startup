@@ -78,16 +78,16 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
-- [ ] **Links** - I did not complete this part of the deliverable.
-- [ ] **Text** - I did not complete this part of the deliverable.
-- [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.
-- [ ] **Images** - I did not complete this part of the deliverable.
-- [ ] **Login placeholder** - I did not complete this part of the deliverable.
-- [ ] **DB data placeholder** - I did not complete this part of the deliverable.
-- [ ] **WebSocket placeholder** - I did not complete this part of the deliverable.
+- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [x] **HTML pages** - I have 5 pages: index, setup, bingo, about, and scores (all *.html)
+- [x] **Proper HTML element usage** - I utilized \<header\>, \<footer\>, \<main\>, \<nav\>, \<div\> (and more) tags.
+- [x] **Links** - I have links to each page for easy navigation as well as to my github
+- [x] **Text** - All useful text for my game is included in every page, \<p\>, \<h3\>, \<b\> (and more) tags are used.
+- [x] **3rd party API placeholder** - bingo.html uses api calls for the images in the bingo tiles
+- [x] **Images** - Same as prev, the bingo tiles include \<img\> tags that use images received from the api
+- [x] **Login placeholder** - index.html includes a login placeholder section
+- [x] **DB data placeholder** - scores.html includes DB data placeholders (as well as index.html's login section)
+- [x] **WebSocket placeholder** - bingo.html and scores.html show WebSocket placeholders (instant updates to what is going on in their games)
 
 ## 🚀 CSS deliverable
 
