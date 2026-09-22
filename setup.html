@@ -4,12 +4,12 @@
     <meta charset="UTF-8" />
     <!-- Tell browsers not to scale the viewport automatically -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Church Bingo 260</title>
+    <title>Setup</title>
     <link rel="icon" href="favicon.ico" />
   </head>
   <body>
     <header>
-      <h1>Church Bingo!</h1>
+      <h1>Setup Your Game</h1>
       <nav>
         <menu>
           <li><a href="index.html">Home</a></li>
@@ -24,15 +24,30 @@
     </header>
 
     <main>
-      <h1>Join to Play Bingo</h1>
-      <form method="get" action="setup.html">
+      <h1>Settings</h1>
+      <form method="get" action="bingo.html">
         <div>
-          <input type="text" placeholder="your@email.com" />
+          <label>Difficulty:</label>
+          <button type="submit">Easy</button>
+          <button type="submit">Medium</button>
+          <button type="submit">Hard</button>
         </div>
         <div>
-          <input type="password" placeholder="password" />
+          <label>Bingo Loadout:</label>
+          <button type="submit">Fast & Testimony Meeting</button>
+          <button type="submit">General Conference</button>
+          <button type="submit">Custom</button>
+          <input type="text" placeholder="Custom Link:" />
         </div>
-        <button type="submit">Login</button>
+        <div>
+          <label>Modifiers:</label>
+          <button type="submit">Focus Mode</button>
+          <button type="submit">Repeats Allowed</button>
+        </div>
+        <br/>
+        <button type="submit">Start Game</button>
+        <button type="submit">Join Game</button>
+        <input type="text" placeholder="Game ID"/>
       </form>
     </main>
 
