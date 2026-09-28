@@ -11,6 +11,8 @@ This file represents what I have learned about web programming. And truly, I can
 
 > To deploy my project. Using the deployFiles.sh file, input into the terminal the following command (filling in the blanks): ```./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s startup```. If an error occurs, use the following command to fix it (this will probably happen since I have a mac): ```sudo chmod +x deployFiles.sh```
 
+> NOTE: While debugging the deployFiles.sh script in the simon-css project, AI prompted me to use the following commands to fix the errors: ```sed -i '' $'s/\r$//' deployFiles.sh``` and ```chmod +x deployFiles.sh```. This worked while doing ```sudo chmod +x deployFiles.sh``` prompted me to input a password that I don't know (off the top of my head)
+
 ## Helpful links
 
 - [Course instruction](https://github.com/webprogramming260)
@@ -150,6 +152,13 @@ vw | A percentage of the viewport's width
 vh | A percentage of the viewport's height
 vmin | A percentage of the viewport's smaller dimension
 vmax | A percentage of the viewport's larger dimension
+
+### Fonts
+@font-face can let you host on the server a font family to use 
+
+@import can let you import a font (from google fonts or some other site) to use
+
+\<link\> can also be used to import a font
 
  ### Flex
 In class flex practice: [Flex Box Froggy](https://flexboxfroggy.com/)
