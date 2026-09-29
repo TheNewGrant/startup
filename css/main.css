@@ -1,0 +1,31 @@
+/* main.css - Header and Footer sizing & formatting */
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    box-sizing: border-box;
+    height: 100px;
+    padding: 10px;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+main {
+    flex-grow: 13;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+footer {
+    flex-grow: 1;
+}
