@@ -1,5 +1,6 @@
 /* main.css - Header and Footer sizing & formatting */
 
+/* Font information to be used across all pages */
 @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
 
 .caveat-brush-font {
@@ -13,7 +14,6 @@ body {
     flex-direction: column;
     height: 100vh;
 }
-
 
 /* Header section */
 header {
@@ -56,14 +56,3 @@ footer {
     padding-top: 15px;
 }
 
-#login-section {
-    flex: 5;
-    height: 70%;
-    padding: 20px;
-    border-radius: 10%;
-}
-
-.filler {
-    flex: 1;
-    background-color: green;
-}
