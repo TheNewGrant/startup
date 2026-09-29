@@ -36,4 +36,7 @@ p {
         height: 98%;
         border-radius: 0px;
     }
+    p {
+        font-size: 1.15rem;
+    }
 }
