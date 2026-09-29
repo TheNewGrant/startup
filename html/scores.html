@@ -7,6 +7,7 @@
   <title>Scores</title>
   <script src="https://cdn.tailwindcss.com"></script> 
   <link href="../css/main.css" rel="stylesheet"/>
+  <link href="../css/scores.css" rel="stylesheet"/>
 </head>
 
 <body>
@@ -25,9 +26,9 @@
     <hr />
   </header>
 
-  <main>
-    <section id="global-scores">
-      <h3>Global Scores</h3>
+  <main class="dark:bg-slate-600">
+    <section id="global-scores" class="bg-yellow-200">
+      <h1>Global Scores</h3>
       <!-- This is a preview of how both Websocket and MongoDB will be used once implemented -->
       <table>
         <thead>
@@ -68,9 +69,8 @@
         </tbody>
       </table>
     </section>
-    <br />
-    <section id="personal-scores">
-      <h3>Your scores</h3>
+    <section id="personal-scores" class="bg-red-200">
+      <h1>Your scores</h3>
       <!-- This is a preview of how MongoDB will be implemented to see past scores -->
       <table>
         <thead>

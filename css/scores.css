@@ -1,0 +1,28 @@
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+#global-scores {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#personal-scores {
+    padding: 20px;
+    border-radius: 10px;
+}
+
+th {
+    border: gray 1px solid;
+    border-bottom-color: black;
+    padding: 3px;
+}
+
+td {
+    border: gray 1px solid;
+    padding: 3px;
+}
