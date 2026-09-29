@@ -8,7 +8,8 @@ main {
     padding: 3rem;
     border-radius: 20px;
     width: 50%;
-    height: 80%
+    height: 80%;
+    gap: 1rem;
 }
 
 #intro {
@@ -16,3 +17,73 @@ main {
     /* I have to use the id because it has higher priority over the font class */
 }
 
+form {
+    height: 80%;
+    border-radius: 10px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.input-section {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+
+label {
+    font-size: 2rem;
+}
+
+input {
+    font-size: 2rem;
+    flex: 3;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
+button {
+    font-size: 2rem;
+    flex: 1;
+    border-radius: 10px;
+    width: 50%;
+}
+
+#login {
+    font-size: 2rem;
+}
+
+@media (max-width: 1400px) {
+    #login-section {
+        width: 70%;
+    }
+}
+
+@media (max-width: 1000px) {
+    #login-section {
+        width: 90%;
+    }
+}
+
+@media (max-width: 800px) {
+    #login-section {
+        width: 95%;
+    }
+    .input-section {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 500px) {
+    #login-section {
+        padding: 1rem;
+        border-radius: 5px;
+    }
+    form {
+        padding: 1rem;
+    }
+}
