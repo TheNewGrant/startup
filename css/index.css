@@ -1,0 +1,18 @@
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#login-section {
+    padding: 3rem;
+    border-radius: 20px;
+    width: 50%;
+    height: 80%
+}
+
+#intro {
+    font-size: 3rem;
+    /* I have to use the id because it has higher priority over the font class */
+}
+
