@@ -1,5 +1,13 @@
 /* main.css - Header and Footer sizing & formatting */
 
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+
+.caveat-brush-font {
+  font-family: "Caveat Brush", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 body {
     display: flex;
     flex-direction: column;
