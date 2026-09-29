@@ -21,6 +21,15 @@ nav ul {
     gap: 2rem;
 }
 
+@media (max-width: 400px) {
+    header {
+        height: 3rem;
+    }
+    header h1 {
+        display: none;
+    }
+}
+
 /* Main sections */
 main {
     flex-grow: 13;
