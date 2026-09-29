@@ -6,6 +6,8 @@ body {
     height: 100vh;
 }
 
+
+/* Header section */
 header {
     box-sizing: border-box;
     height: 100px;
@@ -16,9 +18,10 @@ header {
 nav ul {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    gap: 2rem;
 }
 
+/* Main sections */
 main {
     flex-grow: 13;
     display: flex;
@@ -26,16 +29,9 @@ main {
     justify-content: center;
 }
 
+/* Footer section */
 footer {
     flex-grow: 1;
-}
-
-
-main {
-    display: flex;
-    align-content: center;
-    justify-content: center; 
-    align-items: center;
 }
 
 #login-section {
