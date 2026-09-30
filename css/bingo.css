@@ -29,7 +29,6 @@ input {
 table {
     height: 90%;
     aspect-ratio: 1 / 1;
-    background-color: red;
     table-layout: fixed;
     border-radius: 20px;
 }
