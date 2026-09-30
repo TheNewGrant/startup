@@ -66,6 +66,7 @@ button {
 td p {
     font-size: 100%;
     flex: 1;
+    user-select: none;
 }
 
 td img {
@@ -75,6 +76,7 @@ td img {
     display: block;
     margin: 0;
     flex: 3;
+    user-select: none;
 }
 
 @media (max-width: 1350px) {
