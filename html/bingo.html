@@ -27,32 +27,35 @@
   </header>
 
   <main class="dark:bg-slate-600">
-    <p id="game-id"><b>Game ID:</b> 12345</p>
-    <div class="players">
-      <b>Player:</b>
-      <span class="player-name">Mason</span>
-    </div>
-    <ul class="notification">
-      <li class="player-name">Jeff joined the bingo game</li>
-      <li class="player-name">George scored a bingo</li>
-      <li class="player-name">Anna completed a category</li>
-    </ul>
-    <br />
+    <section id="realtime-updates" class="bg-gray-200 dark:bg-gray-500 dark:text-white">
+      <p id="game-id"><b>Game ID:</b> 12345</p>
+      <div class="players">
+        <b>Player:</b>
+        <span class="player-name">Mason</span>
+      </div>
+      <br/>
+      <hr/>
+      <br/>
+      <ul class="notification">
+        <li class="player-name">Jeff joined the bingo game</li>
+        <li class="player-name">George scored a bingo</li>
+        <li class="player-name">Anna completed a category</li>
+      </ul>
+      <br/>
+      <hr/>
+      <br/>
+      <div>
+        <label for="count">Score</label>
+        <input class="bg-white dark:bg-gray-700" type="text" id="count" value="--" readonly />
+      </div>
 
-    <div>
-      <label for="count">Score</label>
-      <input type="text" id="count" value="--" readonly />
-    </div>
-
-    <br />
-    <br />
-
-    <div>
+    </section>
+    <section id="board-section" class="bg-gray-200 dark:bg-gray-500 dark:text-white">
       <!-- Bingo Table: The images in each square come from the API I intend to use (Iconify) -->
-      <table id="bingo-board">
+      <table id="bingo-board" class="bg-white dark:bg-gray-600">
         <caption>Bingo Board</caption>
         <tr>
-          <td class="bingo-tile">
+          <td class="bingo-tile" style="border-top-left-radius: 20px;">
             <button>
               <img src="https://api.iconify.design/fluent-emoji-flat/alarm-clock.svg" alt="alarm clock"/>
               <p>Neighbor falls asleep</p>
@@ -80,7 +83,7 @@
 
             </button>
           </td>
-          <td class="bingo-tile">
+          <td class="bingo-tile" style="border-top-right-radius: 20px;">
             <button>
               <img src="https://api.iconify.design/fluent-emoji-flat/bat.svg" alt="bat"/>
               <p>Animal/Insect distraction</p>
@@ -201,7 +204,7 @@
           </td>
         </tr>
         <tr>
-          <td class="bingo-tile">
+          <td class="bingo-tile" style="border-bottom-left-radius: 20px;">
             <button>
               <img src="https://api.iconify.design/fluent-emoji-flat/infinity.svg" alt="infinity"/>
               <p>Topic: Atonement</p>
@@ -229,7 +232,7 @@
 
             </button>
           </td>
-          <td class="bingo-tile">
+          <td class="bingo-tile" style="border-bottom-right-radius: 20px;">
             <button>
               <img src="https://api.iconify.design/fluent-emoji-flat/light-blue-heart.svg" alt="light blue heart"/>
               <p>Topic: Service</p>
@@ -238,7 +241,7 @@
           </td>
         </tr>
       </table>
-    </div>
+    </section>
   </main>
 
   <footer class="bg-gray-50 dark:bg-gray-800">
