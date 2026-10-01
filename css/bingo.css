@@ -40,7 +40,11 @@ main {
     min-height: 0;
     height: 100%;
     border-radius: 10px;
+
+    /* Slightly more room below the square board */
     padding: clamp(0.2rem, 1vw, 1rem);
+    padding-bottom: clamp(0.4rem, 1.2vw, 1.2rem);
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -224,5 +228,64 @@ input {
 
     #bingo-board td p {
         font-size: clamp(0.32rem, 2.7vw, 0.5rem);
+    }
+}
+
+@media (max-width: 400px) {
+    /*
+      Turn the updates panel into a small two-column grid:
+      Game ID gets the full first row; player and score share row two.
+    */
+    #realtime-updates {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        column-gap: 0.6rem;
+        row-gap: 0.25rem;
+        align-items: center;
+    }
+
+    /* Game ID spans the full width at the top. */
+    #game-id {
+        grid-column: 1 / -1;
+        margin: 0;
+    }
+
+    /* Player name appears on the left of the compact second row. */
+    #realtime-updates .players {
+        grid-column: 1;
+        margin: 0;
+    }
+
+    /*
+      The final div in #realtime-updates is the score container.
+      It sits next to the player information rather than below it.
+    */
+    #realtime-updates > div:last-child {
+        grid-column: 2;
+        grid-row: 2;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    #realtime-updates label {
+        font-size: 0.8rem;
+    }
+
+    #realtime-updates input {
+        width: 2.5rem;
+        padding-left: 0.25rem;
+        text-align: center;
+    }
+
+    /*
+      Remove spacing and separators that consume valuable vertical space
+      on small phones. The notification list is also hidden in this compact
+      mobile presentation.
+    */
+    #realtime-updates > br,
+    #realtime-updates > hr,
+    #realtime-updates .notification {
+        display: none;
     }
 }
