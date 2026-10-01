@@ -167,4 +167,21 @@ In class flex practice: [Flex Box Froggy](https://flexboxfroggy.com/)
 
 ## React
 
-Interesting things I have learned about React
+### Router
+
+>```import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';``` - Imports the needed \<Tags\> from *react-router-dom* to properly route the project. Below are their tags and their uses
+ - \<BrowserRouter\>: Surround the entire 'page' with it (in the React function return value), allows the other tags to work
+ - \<NavLink\>: Works like \<a\> - lets you link other React web pages for navigation
+ - \<Routes\>: Contains \<Route\> that gives paths to other pages
+ *NOTE: \<NavLink\> works like the physical button, while \<Route\> is what actually connects other pages.*
+
+### Components
+You can make custom components like \<Practice \>, and even give it parameters like \<Practice who="Me\>
+This connects to a React function (or variable) such as:
+```
+function Practice(test) {
+    return <div>I'm talking to {test.who}</div>;
+}
+```
+
+> Use *className* instead of *class* to reference css/html classes in React
