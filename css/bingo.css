@@ -1,5 +1,18 @@
 /* bingo.css */
 
+/* NOTE: AI was used to remake this CSS page for better page formatting on small devices */
+
+/*
+  main.css gives footer flex-grow: 1.
+  Override that here so the footer stays only as tall as its contents.
+*/
+footer {
+    flex: 0 0 auto;
+    flex-grow: 0;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
 /*
   Keep main inside the remaining vertical space created by main.css:
   body is a column flex container, and main grows between the header/footer.
@@ -287,5 +300,62 @@ input {
     #realtime-updates > hr,
     #realtime-updates .notification {
         display: none;
+    }
+}
+
+@media (max-width: 900px) {
+    /*
+      Stack sections normally on narrow screens.
+      `order` displays the board before the live-update card even though
+      realtime-updates appears first in the HTML.
+    */
+    main {
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: visible;
+    }
+
+    /*
+      The board uses its natural square height based on page width.
+      Do not set flex-grow or a fixed height here: doing so can make
+      mobile Safari clip the last row of tiles.
+    */
+    #board-section {
+        order: 1;
+        flex: 0 0 auto;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+        padding: 0.2rem 0.2rem 0.5rem;
+        align-items: flex-start;
+        justify-content: center;
+        overflow: visible;
+    }
+
+    /*
+      A 100%-wide square board. The section's padding accounts for the
+      small visible gap around and underneath it.
+    */
+    #bingo-board {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: none;
+        aspect-ratio: 1 / 1;
+    }
+
+    /*
+      Compact panel directly under the board.
+      Your separate <= 400px rule can still arrange Game ID / Player / Score.
+    */
+    #realtime-updates {
+        order: 2;
+        flex: 0 0 auto;
+        width: min(100%, 34rem);
+        max-width: none;
+        max-height: 7rem;
+        overflow: auto;
     }
 }
