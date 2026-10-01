@@ -167,6 +167,13 @@ In class flex practice: [Flex Box Froggy](https://flexboxfroggy.com/)
 
 ## React
 
+### States
+```const [name, setName] = React.useState('BYU');```: Breakdown
+ - ```React.useState('BYU')``` creates a state variable and supplies it with an initial value (BYU)
+ - ```name``` is a constant value that can be referenced to get the current value of the state
+ - ```setName``` is a function to set a new value for the variable ```name```
+ - You call the state in React with ```{name}``` to access its value (inside an html-style tag)
+
 ### Router
 
 >```import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom';``` - Imports the needed \<Tags\> from *react-router-dom* to properly route the project. Below are their tags and their uses
@@ -185,3 +192,5 @@ function Practice(test) {
 ```
 
 > Use *className* instead of *class* to reference css/html classes in React
+
+
