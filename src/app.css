@@ -2,6 +2,7 @@
 
 /* Font information to be used across all pages */
 @import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+@import "tailwindcss";
 
 .caveat-brush-font {
   font-family: "Caveat Brush", cursive;
