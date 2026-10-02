@@ -39,14 +39,6 @@ nav ul {
     }
 }
 
-/* Main sections */
-main {
-    flex-grow: 13;
-    display: flex;
-    align-content: center;
-    justify-content: center;
-}
-
 /* Footer section */
 footer {
     flex-grow: 1;
