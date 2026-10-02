@@ -17,18 +17,25 @@ export default function App() {
             <h1 className="caveat-brush-font text-5xl text-amber-500">Church Bingo!</h1>
             <nav>
             <ul>
-                <li><a href="index.html" className="text-red-400 hover:text-red-300 dark:text-white dark:hover:text-amber-400 font-extrabold">Home</a></li>
-                <li><a href="html/setup.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white">Setup</a></li>
-                <li><a href="html/bingo.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white">Play</a></li>
-                <li><a href="html/scores.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white">Scores</a></li>
-                <li><a href="html/about.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white">About</a></li>
+                <li><NavLink href="index.html" className="text-red-400 hover:text-red-300 dark:text-white dark:hover:text-amber-400 font-extrabold">Home</NavLink></li>
+                <li><NavLink href="html/setup.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white">Setup</NavLink></li>
+                <li><NavLink href="html/bingo.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white">Play</NavLink></li>
+                <li><NavLink href="html/scores.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white">Scores</NavLink></li>
+                <li><NavLink href="html/about.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white">About</NavLink></li>
             </ul>
             </nav>
 
             <hr />
         </header>
 
-        <main>Page info will go here</main>
+        <Routes>
+            <Route path='/' element={<Login />} exact />
+            <Route path='/play' element={<Play />} />
+            <Route path='/scores' element={<Scores />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/setup' element={<Setup />} />
+            <Route path='*' element={<NotFound />} />
+        </Routes>
 
         <footer className="bg-gray-50 dark:bg-gray-800">
             <hr />
@@ -38,4 +45,8 @@ export default function App() {
     </div> 
   </BrowserRouter>
   );
+}
+
+function NotFound() {
+  return <main className="container-fluid bg-secondary text-center">404: Return to sender. Address unknown.</main>;
 }
