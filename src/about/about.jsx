@@ -3,8 +3,8 @@ import './about.css';
 
 export function About() {
   return (
-    <main class="dark:bg-slate-600">
-      <div id="about" class="bg-gray-300">
+    <main className="dark:bg-slate-600">
+      <div id="about" className="bg-gray-300">
         <p>
           I was inspired to make Church Bingo after a fast and testimony meeting on June of 2026.
           During the meeting a friend leaned over to me and asked if I would like to play bingo with him,

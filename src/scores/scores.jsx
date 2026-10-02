@@ -3,9 +3,9 @@ import './scores.css';
 
 export function Scores() {
   return (
-    <main class="dark:bg-slate-600">
-      <section id="global-scores" class="bg-yellow-200">
-        <h1 class="scores-label">Global Scores</h1>
+    <main className="dark:bg-slate-600">
+      <section id="global-scores" className="bg-yellow-200">
+        <h1 className="scores-label">Global Scores</h1>
         {/* This is a preview of how both Websocket and MongoDB will be used once implemented */}
         <table>
           <thead>
@@ -46,8 +46,8 @@ export function Scores() {
           </tbody>
         </table>
       </section>
-      <section id="personal-scores" class="bg-red-200">
-        <h1 class="scores-label">Your scores</h1>
+      <section id="personal-scores" className="bg-red-200">
+        <h1 className="scores-label">Your scores</h1>
         {/*  This is a preview of how MongoDB will be implemented to see past scores */}
         <table>
           <thead>
