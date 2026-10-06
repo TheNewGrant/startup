@@ -39,7 +39,7 @@ export default function App() {
 
         <footer className="bg-gray-50 dark:bg-gray-800">
             <hr />
-            <span className="text-reset dark:text-white">Mason Grant:</span>
+            <span className="text-reset dark:text-white">Mason Grant: </span>
             <a href="https://github.com/TheNewGrant/startup" className="text-red-300 dark:text-amber-400">GitHub</a>
         </footer>
     </div> 

@@ -7,7 +7,7 @@ export function Bingo() {
     <section id="realtime-updates" className="bg-gray-200 dark:bg-gray-500 dark:text-white">
       <p id="game-id"><b>Game ID:</b> 12345</p>
       <div className="players">
-        <b>Player:</b>
+        <b>Player: </b>
         <span className="player-name">Mason</span>
       </div>
       <br/>
