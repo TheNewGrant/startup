@@ -105,6 +105,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
+> NOTE: For some of the first commits of this deliverable, I used AI to review my CSS code and fix some formatting errors I had noticed. Since the focus of this deliverable was on React I allowed myself to use AI for this unrelated CSS code. I clearly labeled each commit that used AI with the prefix ```(AI)```, and any commit without that prefix was done *without* the use of AI.  
+
 - [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
 - [x] **Bundled using Vite** - Vite is all set up, and Tailwind is configured with it too
 - [x] **Components** - I added about, login, bingo, scores, and setup components, alongside app as well.
