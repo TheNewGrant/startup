@@ -13,6 +13,8 @@ This file represents what I have learned about web programming. And truly, I can
 
 > NOTE: While debugging the deployFiles.sh script in the simon-css project, AI prompted me to use the following commands to fix the errors: ```sed -i '' $'s/\r$//' deployFiles.sh``` and ```chmod +x deployFiles.sh```. This worked while doing ```sudo chmod +x deployFiles.sh``` prompted me to input a password that I don't know (off the top of my head)
 
+> NOTE: deployFiles.sh is now deployReact.sh. Use the same command but with a slightly different vocab ```./deployReact.sh -k <yourpemkey> -h <yourdomain> -s startup```
+
 ## Helpful links
 
 - [Course instruction](https://github.com/webprogramming260)
