@@ -1,12 +1,20 @@
 import React from 'react';
 import './setup.css';
+import { useNavigate } from "react-router-dom";
 
 export function Setup() {
+  const navigate = useNavigate();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    navigate("./../bingo")
+  }
+
   return (
     <main className="dark:bg-slate-600">
       <section className="bg-gray-200">
         <h1 id="setup" className="caveat-brush-font">Settings</h1>
-        <form method="get" action="bingo.html">
+        <form method="get" onSubmit={handleSubmit}>
           <div id="difficulty" className="settings-section">
             <label>Difficulty:</label>
             <button className="bg-red-400 hover:bg-red-500 dark:bg-amber-400 dark:hover:bg-amber-500" type="button">Easy</button>

@@ -17,11 +17,11 @@ export default function App() {
             <h1 className="caveat-brush-font text-5xl text-amber-500">Church Bingo!</h1>
             <nav>
             <ul>
-                <li><NavLink href="index.html" className="text-red-400 hover:text-red-300 dark:text-white dark:hover:text-amber-400 font-extrabold" to="">Home</NavLink></li>
-                <li><NavLink href="html/setup.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="setup">Setup</NavLink></li>
-                <li><NavLink href="html/bingo.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="bingo">Play</NavLink></li>
-                <li><NavLink href="html/scores.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="scores">Scores</NavLink></li>
-                <li><NavLink href="html/about.html" className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="about">About</NavLink></li>
+                <li><NavLink className="text-red-400 hover:text-red-300 dark:text-white dark:hover:text-amber-400 font-extrabold" to="">Home</NavLink></li>
+                <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="setup">Setup</NavLink></li>
+                <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="bingo">Play</NavLink></li>
+                <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="scores">Scores</NavLink></li>
+                <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="about">About</NavLink></li>
             </ul>
             </nav>
 

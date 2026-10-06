@@ -22,7 +22,7 @@ export function Bingo() {
       <hr/>
       <br/>
       <div>
-        <label for="count">Score</label>
+        <label htmlFor="count">Score</label>
         <input className="bg-white dark:bg-gray-700" type="text" id="count" value="--" readonly />
       </div>
 
