@@ -105,10 +105,10 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [x] **Bundled using Vite** - Vite is all set up, and Tailwind is configured with it too
+- [x] **Components** - I added about, login, bingo, scores, and setup components, alongside app as well.
+- [x] **Router** - I set up Routing to make this a single-page application. App.jsx handles all the routing.
 
 ## 🚀 React part 2: Reactivity deliverable
 
