@@ -196,3 +196,8 @@ function Practice(test) {
 > Use *className* instead of *class* to reference css/html classes in React
 
 Something important I learned is that style attributes in HTML tags don't compute in React, so you need to change its format to ```style={{ camelCaseAttribute: "value" }}``` for it to work.
+
+### Console
+```console.log("Some Output")```
+```console.time("Timer name"); console.timeEnd("Timer name");```
+```console.count("some count name")```
