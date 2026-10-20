@@ -201,3 +201,8 @@ Something important I learned is that style attributes in HTML tags don't comput
 ```console.log("Some Output")```
 ```console.time("Timer name"); console.timeEnd("Timer name");```
 ```console.count("some count name")```
+
+### Arrow functions
+```() => 3;``` - Takes no parameters and returns 3
+```(a, b) => a + b;``` - Takes a and b and returns their sum
+```const multiplier = (a, b) => a * b;``` - Makes a variable that takes two parameters and returns their product
