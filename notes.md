@@ -206,3 +206,10 @@ Something important I learned is that style attributes in HTML tags don't comput
 ```() => 3;``` - Takes no parameters and returns 3
 ```(a, b) => a + b;``` - Takes a and b and returns their sum
 ```const multiplier = (a, b) => a * b;``` - Makes a variable that takes two parameters and returns their product
+
+### Destructuring
+```
+let a = [1, 2, 3, 4, 5];
+const [b, c, ... others] = a
+// b = 1, c = 2, others = [3, 4, 5]
+```
