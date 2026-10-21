@@ -53,6 +53,11 @@ button {
     width: 50%;
 }
 
+/* button:disabled {
+    color: rgb(105, 96, 96);
+    background-color: rgb(222, 188, 123);
+} */
+
 #login {
     font-size: 2rem;
 }

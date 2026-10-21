@@ -34,14 +34,14 @@ export function Unauthorized(properties) {
                 onChange = {(e) => setPassword(e.target.value)} />
             </div>
             <button id="login" 
-                    className="bg-red-400 dark:bg-amber-500 text-white" 
+                    className="bg-red-400 dark:bg-amber-500 text-white dark:disabled:bg-amber-800 disabled:bg-red-200" 
                     type="submit"
                     disabled = {!userName || !password}
                     onClick = {() => loginUser()}>
                 Login
             </button>
             <button id="create" 
-                    className="bg-red-400 dark:bg-amber-500 text-white" 
+                    className="bg-red-400 dark:bg-amber-500 text-white dark:disabled:bg-amber-800 disabled:bg-red-200" 
                     type="submit"
                     disabled = {!userName || !password}
                     onClick = {() => createUser()}>
