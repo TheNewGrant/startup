@@ -16,7 +16,7 @@ export function Unauthorized(properties) {
     }
 
     return (
-        <div>
+        <div className = "form">
             <div className="input-section">
                 <label htmlFor="identify">Email:</label>
                 <input id="identify" 
@@ -36,12 +36,14 @@ export function Unauthorized(properties) {
             <button id="login" 
                     className="bg-red-400 dark:bg-amber-500 text-white" 
                     type="submit"
+                    disabled = {!userName || !password}
                     onClick = {() => loginUser()}>
                 Login
             </button>
             <button id="create" 
                     className="bg-red-400 dark:bg-amber-500 text-white" 
                     type="submit"
+                    disabled = {!userName || !password}
                     onClick = {() => createUser()}>
                 Create
             </button>

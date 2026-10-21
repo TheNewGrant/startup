@@ -17,7 +17,7 @@ main {
     /* I have to use the id because it has higher priority over the font class */
 }
 
-form {
+.form {
     height: 80%;
     border-radius: 10px;
     padding: 2rem;

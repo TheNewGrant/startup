@@ -12,7 +12,7 @@ export function Authorized(properties) {
   }
 
   return (
-      <div className = "bg-gray-300">
+      <div className = "bg-gray-300 form">
         <div className = "player-name">{properties.userName}</div>
         <button id = "login" 
             className = "bg-red-400 dark:bg-amber-500 text-white" 
