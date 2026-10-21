@@ -15,6 +15,8 @@ export default function App() {
     const currentAuthState = userName ? AuthState.Authorized : AuthState.Unauthorized;
     const [authState, setAuthState] = React.useState(currentAuthState);
     const [gameID, setGameID] = React.useState('00000');
+    const focusedText = "text-red-400 hover:text-red-300 dark:text-white dark:hover:text-amber-400 font-extrabold"
+    const unfocusedText = "text-gray-500 hover:text-red-300 dark:hover:text-white"
 
     return (
     <BrowserRouter>
@@ -23,17 +25,17 @@ export default function App() {
             <h1 className="caveat-brush-font text-5xl text-amber-500">Church Bingo!</h1>
             <nav>
             <ul>
-                <li><NavLink className="text-red-400 hover:text-red-300 dark:text-white dark:hover:text-amber-400 font-extrabold" to="">Home</NavLink></li>
+                <li><NavLink className={({isActive}) => isActive ? focusedText : unfocusedText} to="">Home</NavLink></li>
                 { authState === AuthState.Authorized &&
-                    <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="setup">Setup</NavLink></li>
+                    <li><NavLink className={({isActive}) => isActive ? focusedText : unfocusedText} to="setup">Setup</NavLink></li>
                 }
                 { authState === AuthState.Authorized &&
-                    <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="bingo">Play</NavLink></li>
+                    <li><NavLink className={({isActive}) => isActive ? focusedText : unfocusedText} to="bingo">Play</NavLink></li>
                 }
                 { authState === AuthState.Authorized &&
-                    <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="scores">Scores</NavLink></li>
+                    <li><NavLink className={({isActive}) => isActive ? focusedText : unfocusedText} to="scores">Scores</NavLink></li>
                 }
-                <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="about">About</NavLink></li>
+                <li><NavLink className={({isActive}) => isActive ? focusedText : unfocusedText} to="about">About</NavLink></li>
             </ul>
             </nav>
 
