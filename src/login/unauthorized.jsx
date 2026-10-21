@@ -1,16 +1,17 @@
+import React from 'react'
 
-export function Unauthorized(input) {
-    const [userName, setUserName] = React.useState(input.userName);
+export function Unauthorized(properties) {
+    const [userName, setUserName] = React.useState(properties.userName);
     const [password, setPassword] = React.useState("");
 
     async function loginUser() {
         localStorage.setItem('userName', userName);
-        input.onLogin(userName);
+        properties.onLogin(userName);
     }
     
     async function createUser() {
         localStorage.setItem('userName', userName);
-        input.onLogin(userName);
+        properties.onLogin(userName);
     }
 
     return (
@@ -31,18 +32,18 @@ export function Unauthorized(input) {
                 value = {password}
                 onChange = {(e) => setPassword(e.target.value)} />
             </div>
-            <Button id="login" 
+            <button id="login" 
                     className="bg-red-400 dark:bg-amber-500 text-white" 
                     type="submit"
                     onClick = {() => loginUser()}>
                 Login
-            </Button>
-            <Button id="create" 
+            </button>
+            <button id="create" 
                     className="bg-red-400 dark:bg-amber-500 text-white" 
                     type="submit"
                     onClick = {() => createUser()}>
                 Create
-            </Button>
+            </button>
         </div>
     )
 }
