@@ -14,6 +14,7 @@ export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem("userName") || "");
     const currentAuthState = userName ? AuthState.Authorized : AuthState.Unauthorized;
     const [authState, setAuthState] = React.useState(currentAuthState);
+    const [gameID, setGameID] = React.useState('00000');
 
     return (
     <BrowserRouter>
@@ -52,8 +53,15 @@ export default function App() {
                     />
                 } exact 
             />
-            <Route path='/bingo' element={<Bingo userName = {userName} />} />
-            <Route path='/scores' element={<Scores />} />
+            <Route path='/bingo' element={<Bingo userName = {userName} gameID = {gameID}/>} />
+            <Route path='/scores' element=
+                {
+                    <Scores 
+                    gameID = {gameID} 
+                    onGameSetup = {(gameID) => setGameID(gameID)}
+                    />
+                }
+            />
             <Route path='/about' element={<About />} />
             <Route path='/setup' element={<Setup />} />
             <Route path='*' element={<NotFound />} />
