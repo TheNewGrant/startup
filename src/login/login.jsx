@@ -1,8 +1,9 @@
 import React from 'react';
 import './login.css';
 import { useNavigate } from "react-router-dom";
+import { AuthState } from './auth-state';
 
-export function Login() {
+export function Login({ userName, authState, onAuthChange }) {
   const navigate = useNavigate();
 
   function handleSubmit(event) {
@@ -24,6 +25,7 @@ export function Login() {
             <input id="id-pass" type="password" placeholder="password" />
           </div>
           <button id="login" className="bg-red-400 dark:bg-amber-500 text-white" type="submit">Login</button>
+          <button id="create" className="bg-red-400 dark:bg-amber-500 text-white" type="submit">Create</button>
         </form>
       </div>
     </main>
