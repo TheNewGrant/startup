@@ -14,9 +14,15 @@ export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem("userName") || "");
     const currentAuthState = userName ? AuthState.Authorized : AuthState.Unauthorized;
     const [authState, setAuthState] = React.useState(currentAuthState);
-    const [gameID, setGameID] = React.useState('00000');
+    const [gameID, setGameID] = React.useState(localStorage.getItem("gameID") || '00000');
     const focusedText = "text-red-400 hover:text-red-300 dark:text-white dark:hover:text-amber-400 font-extrabold"
     const unfocusedText = "text-gray-500 hover:text-red-300 dark:hover:text-white"
+    const [settings, setSettings] = React.useState({
+        difficulty: 'easy',
+        loadout: 'fast-and-testimony',
+        focusMode: true,
+        repeatsAllowed: true,
+    })
 
     return (
     <BrowserRouter>
@@ -59,13 +65,20 @@ export default function App() {
             <Route path='/scores' element=
                 {
                     <Scores 
-                    gameID = {gameID} 
-                    onGameSetup = {(gameID) => setGameID(gameID)}
+                    
                     />
                 }
             />
             <Route path='/about' element={<About />} />
-            <Route path='/setup' element={<Setup />} />
+            <Route path='/setup' element=
+                {
+                    <Setup 
+                    gameID = {gameID} 
+                    onGameIDChange = {(ID) => setGameID(ID)}
+                    onSettingsChange = {(setting) => setSettings(setting)}
+                    onGameSetup = {(gameID) => setGameID(gameID)}
+                    />
+                } />
             <Route path='*' element={<NotFound />} />
         </Routes>
 
