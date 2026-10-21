@@ -213,3 +213,10 @@ let a = [1, 2, 3, 4, 5];
 const [b, c, ... others] = a
 // b = 1, c = 2, others = [3, 4, 5]
 ```
+
+### Time
+```setTimeout()``` - takes two params, a function to be executed, and a delay (in ms) to wait before executing
+You can use arrow functions in the first parameter, and 1000 = 1 second
+```setInterval()``` - like setTimeout, but repeats after the delay has gone away.
+Two params: a function and a delay in ms. Will loop, calling the function every #ms.
+```clearInterval('interval being run')``` - will stop the interval given in the parameter.
