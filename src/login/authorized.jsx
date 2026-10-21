@@ -13,11 +13,11 @@ export function Authorized(properties) {
 
   return (
       <div className = "bg-gray-300 form">
-        <div className = "player-name">{properties.userName}</div>
+        <div className = "player-name caveat-brush-font text-4xl text-teal-800">{properties.userName}</div>
         <button id = "login" 
             className = "bg-red-400 dark:bg-amber-500 text-white" 
             type = "submit" 
-            onClick = {() => navigate('/play')}>
+            onClick = {() => navigate('./../setup')}>
           Play
         </button>
         <button id = "create" 
