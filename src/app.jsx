@@ -10,7 +10,9 @@ import { About } from './about/about';
 import { Setup } from './setup/setup';
 
 export default function App() {
-  return (
+    const [userName, setUserName] = React.useState(localStorage.getItem("userName") || "");
+
+    return (
     <BrowserRouter>
         <div className="body">
             <header className="bg-gray-50 dark:bg-gray-800">
@@ -29,8 +31,14 @@ export default function App() {
         </header>
 
         <Routes>
-            <Route path='/' element={<Login />} exact />
-            <Route path='/bingo' element={<Bingo />} />
+            <Route path='/' element=
+                {
+                    <Login 
+                    userName = {userName}
+                    />
+                } exact 
+            />
+            <Route path='/bingo' element={<Bingo userName = {userName} />} />
             <Route path='/scores' element={<Scores />} />
             <Route path='/about' element={<About />} />
             <Route path='/setup' element={<Setup />} />
