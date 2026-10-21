@@ -6,13 +6,6 @@ import { Authorized } from './authorized';
 import { Unauthorized } from './unauthorized';
 
 export function Login({ userName, authState, onAuthChange }) {
-  const navigate = useNavigate();
-
-  function handleSubmit(event) {
-    event.preventDefault();
-    navigate("./setup")
-  }
-
   return (
     <main className="dark:bg-slate-600">
       <div id="login-section" className="bg-gray-200">
