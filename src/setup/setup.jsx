@@ -2,12 +2,46 @@ import React from 'react';
 import './setup.css';
 import { useNavigate } from "react-router-dom";
 
-export function Setup() {
+export function Setup(properties) {
   const navigate = useNavigate();
+  const [ID, setID] = React.useState("");
 
   function handleSubmit(event) {
     event.preventDefault();
     navigate("./../bingo")
+  }
+
+  function generateRandomID() {
+    let newID = ""
+    for (let i = 0; i < 5; i++) {
+      let newDigit = Math.floor(Math.random() * 10);
+      newID += String(newDigit);
+    }
+    console.log("Generating ID")
+    console.log(newID);
+    createID(newID);
+  }
+
+  function changeSetting() {
+
+  }
+
+  async function createID(id) {
+    localStorage.setItem("gameID", id);
+    properties.onGameIDChange(id);
+  }
+
+  async function startGame() {
+    if (!ID) {
+      generateRandomID()
+    } else {
+      createID(ID)
+    }
+    console.log(ID);
+  }
+
+  function joinGame() {
+    localStorage.getItem("gameID"); // We can't connect to the game yet, but this is the placeholder
   }
 
   return (
@@ -37,9 +71,26 @@ export function Setup() {
           </div>
           <br />
           <div id="enter-game" className="settings-section">
-            <button className="dark:bg-blue-400 dark:hover:bg-blue-500 bg-green-400 hover:bg-green-500" type="submit">Start Game</button>
-            <button className="dark:bg-blue-400 dark:hover:bg-blue-500 bg-green-400 hover:bg-green-500" type="submit">Join Game:</button>
-            <input type="text" placeholder="Game ID" />
+            <button 
+                className="dark:bg-blue-400 dark:hover:bg-blue-500 bg-green-400 hover:bg-green-500" 
+                type="submit"
+                onClick={() => startGame()}>
+              Start Game
+            </button>
+            <button 
+                className="dark:bg-blue-400 
+                  dark:hover:bg-blue-500 
+                  bg-green-400 
+                  hover:bg-green-500 
+                  dark:disabled:bg-blue-200
+                  dark:disabled:text-white
+                  disabled:bg-green-200" 
+                type="submit"
+                disabled = {!ID}
+                onClick = {() => joinGame()}>
+              Join Game:
+            </button>
+            <input type="text" placeholder="Game ID" onChange = {(e) => setID(e.target.value)}/>
             <label id="warning">Note: If the inputted ID is non-existent, a new game with that ID will be hosted.</label>
           </div>
         </form>
