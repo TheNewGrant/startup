@@ -8,9 +8,12 @@ import { Bingo } from './bingo/bingo';
 import { Scores } from './scores/scores';
 import { About } from './about/about';
 import { Setup } from './setup/setup';
+import { AuthState } from './login/auth-state';
 
 export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem("userName") || "");
+    const currentAuthState = userName ? AuthState.Authorized : AuthState.Unauthorized;
+    const [authState, setAuthState] = React.useState(currentAuthState);
 
     return (
     <BrowserRouter>
@@ -20,9 +23,15 @@ export default function App() {
             <nav>
             <ul>
                 <li><NavLink className="text-red-400 hover:text-red-300 dark:text-white dark:hover:text-amber-400 font-extrabold" to="">Home</NavLink></li>
-                <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="setup">Setup</NavLink></li>
-                <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="bingo">Play</NavLink></li>
-                <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="scores">Scores</NavLink></li>
+                { authState === AuthState.Authorized &&
+                    <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="setup">Setup</NavLink></li>
+                }
+                { authState === AuthState.Authorized &&
+                    <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="bingo">Play</NavLink></li>
+                }
+                { authState === AuthState.Authorized &&
+                    <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="scores">Scores</NavLink></li>
+                }
                 <li><NavLink className="text-gray-500 hover:text-red-300 dark:hover:text-white" to="about">About</NavLink></li>
             </ul>
             </nav>
@@ -35,6 +44,11 @@ export default function App() {
                 {
                     <Login 
                     userName = {userName}
+                    authState = {authState}
+                    onAuthChange = {(userName, authState) => {
+                        setUserName(userName);
+                        setAuthState(authState);}
+                        }
                     />
                 } exact 
             />
