@@ -6,6 +6,12 @@ export function Setup(properties) {
   const navigate = useNavigate();
   const [ID, setID] = React.useState("");
 
+  // I use these to track which buttons should be highlighted
+  const [difficulty, setDifficulty] = React.useState("easy");
+  const [focus, setFocusMode] = React.useState(false);
+  const [repeats, setRepeats] = React.useState(false);
+  const [loadout, setLoadout] = React.useState("fast-and-testimony")
+
   function handleSubmit(event) {
     event.preventDefault();
     navigate("./../bingo")
@@ -22,8 +28,13 @@ export function Setup(properties) {
     createID(newID);
   }
 
-  function changeSetting() {
+  function changeDifficulty(diff) {
+    // console.log(`Setting difficulty to ${diff}`)
+    properties.setSettings(prev => ({...prev, difficulty: diff}))
+  }
 
+  function toggleFocusMode() {
+    properties.settings
   }
 
   async function createID(id) {
@@ -51,9 +62,24 @@ export function Setup(properties) {
         <form method="get" onSubmit={handleSubmit}>
           <div id="difficulty" className="settings-section">
             <label>Difficulty:</label>
-            <button className="bg-red-400 hover:bg-red-500 dark:bg-amber-400 dark:hover:bg-amber-500" type="button">Easy</button>
-            <button className="bg-red-400 hover:bg-red-500 dark:bg-amber-400 dark:hover:bg-amber-500" type="button">Medium</button>
-            <button className="bg-red-400 hover:bg-red-500 dark:bg-amber-400 dark:hover:bg-amber-500" type="button">Hard</button>
+            <button 
+                className="bg-red-400 hover:bg-red-500 dark:bg-amber-400 dark:hover:bg-amber-500" 
+                type="button"
+                onClick = {() => changeDifficulty("easy")}>
+              Easy
+            </button>
+            <button 
+                className="bg-red-400 hover:bg-red-500 dark:bg-amber-400 dark:hover:bg-amber-500" 
+                type="button"
+                onClick = {() => changeDifficulty("medium")}>
+              Medium
+            </button>
+            <button 
+                className="bg-red-400 hover:bg-red-500 dark:bg-amber-400 dark:hover:bg-amber-500" 
+                type="button"
+                onClick = {() => changeDifficulty("hard")}>
+              Hard
+            </button>
           </div>
           <div id="bingo-loadout" className="settings-section">
             <label>Bingo Loadout:</label>
@@ -66,8 +92,18 @@ export function Setup(properties) {
           </div>
           <div id="modifiers" className="settings-section">
             <label>Modifiers:</label>
-            <button className="bg-blue-400 hover:bg-blue-500 dark:bg-green-400 dark:hover:bg-green-500" type="button">Focus Mode</button>
-            <button className="bg-blue-400 hover:bg-blue-500 dark:bg-green-400 dark:hover:bg-green-500" type="button">Repeats Allowed</button>
+            <button 
+                className="bg-blue-400 hover:bg-blue-500 dark:bg-green-400 dark:hover:bg-green-500" 
+                type="button"
+                onClick = {() => setSettings((prev) => ({...prev, focusMode: true}))}>
+              Focus Mode
+            </button>
+            <button 
+                className="bg-blue-400 hover:bg-blue-500 dark:bg-green-400 dark:hover:bg-green-500" 
+                type="button"
+                onClick = {() => setSettings((prev) => ({...prev, focusMode: true}))}>
+              Repeats Allowed
+            </button>
           </div>
           <br />
           <div id="enter-game" className="settings-section">
