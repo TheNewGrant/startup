@@ -247,5 +247,17 @@
             "Help to bear testimony"
         ],
         "difficulty": "medium"
+    },
+    "free": {
+        "name": "Free Space",
+        "description": "Free space, nothing required to check this one off",
+        "variants": [],
+        "difficulty": "easy"
+    },
+    "bear-your-own": {
+        "name": "Bear your testimony",
+        "description": "Bear your testimony",
+        "variants": [],
+        "difficulty": "hard"
     }
 }
