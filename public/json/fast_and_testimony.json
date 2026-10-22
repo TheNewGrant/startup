@@ -1,0 +1,251 @@
+{
+    "clothing-color": {
+        "name": "%s article of clothing",
+        "description": "The speaker is wearing %f clothes",
+        "variants": [
+            "red", 
+            "orange", 
+            "yellow", 
+            "green", 
+            "blue", 
+            "purple", 
+            "pink", 
+            "black", 
+            "white",
+            "brown"
+        ],
+        "difficulty": "easy"
+    },
+    "tie-color": {
+        "name": "%s tie",
+        "description": "The speaker is wearing a %f tie",
+        "variants": [
+            "red", 
+            "orange", 
+            "yellow", 
+            "green", 
+            "blue", 
+            "purple", 
+            "pink", 
+            "black", 
+            "white",
+            "brown",
+            "patterned",
+            "solid-color",
+            "floral"
+        ],
+        "difficulty": "easy"
+    },
+    "dress-color": {
+        "name": "%s dress",
+        "description": "A female speaker is wearing a %f dress",
+        "variants": [
+            "red", 
+            "orange", 
+            "yellow", 
+            "green", 
+            "blue", 
+            "purple", 
+            "pink", 
+            "black", 
+            "white",
+            "brown",
+            "patterned",
+            "solid-color",
+            "floral",
+            "short",
+            "long"
+        ],
+        "difficulty": "medium"
+    },
+    "church-shirt-easy": {
+        "name": "%s shirt",
+        "description": "A male speaker is wearing a %f shirt",
+        "variants": [
+            "white",
+            "non-white"
+        ],
+        "difficulty": "easy"
+    },
+    "church-shirt-medium": {
+        "name": "%s shirt",
+        "description": "A male speaker is wearing a %f shirt",
+        "variants": [
+            "black",
+            "casual",
+            "formal",
+            "brown",
+            "non-button-downed"
+        ],
+        "difficulty": "medium"
+    },
+    "wearing-glasses": {
+        "name": "Wearing glasses",
+        "description": "The speaker is wearing glasses",
+        "variants": [],
+        "difficulty": "easy"
+    },
+    "wearing-jewelry": {
+        "name": "Wearing %f",
+        "description": "The speaker is wearing a %f",
+        "variants": [
+            "bracelet",
+            "necklace",
+            "bow",
+            "bowtie"
+        ],
+        "difficulty": "medium"
+    },
+    "wearing-jeans": {
+        "name": "Wearing jeans",
+        "description": "The speaker is wearing jeans",
+        "variants": [],
+        "difficulty": "easy"
+    },
+    "female-wearing-jeans": {
+        "name": "Female wearing jeans",
+        "description": "A female speaker is wearing jeans",
+        "variants": [],
+        "difficulty": "hard"
+    },
+    "tesimony-topic": {
+        "name": "Testimony topic: %s",
+        "description": "The speaker talks about %f",
+        "variants": [
+            "atonement",
+            "repentance",
+            "faith",
+            "christ",
+            "joseph smith",
+            "the prophet",
+            "love",
+            "fasting",
+            "tithing",
+            "blessings",
+            "miracles",
+            "angels",
+            "missionary work",
+            "ministering",
+            "service"
+        ],
+        "difficulty": "easy",
+        "always-repeatable": true
+    },
+    "general-citation": {
+        "name": "%s cited",
+        "description": "The speaker cites the/a %f",
+        "variants": [
+            "modern prophet/apostle",
+            "ancient prophet",
+            "scriptures",
+            "general conference",
+            "ward leader",
+            "previous speaker"
+        ],
+        "difficulty": "easy"
+    },
+    "scripture-citation": {
+        "name": "%s cited",
+        "description": "The speaker cites the %s",
+        "variants": [
+            "book of mormon",
+            "new testament",
+            "old testament",
+            "doctrine and covenants",
+            "pearl of great price",
+            "last general conference"
+        ],
+        "difficulty": "medium"
+    },
+    "interruptions": {
+        "name": "Interruption: %s",
+        "description": "This is an interruption to the meeting",
+        "variants": [
+            "phone rings",
+            "coughing fit",
+            "annoying insect"
+        ],
+        "difficulty": "hard"
+    },
+    "interruptions-children": {
+        "name": "Interruption: %s",
+        "description": "This is an interruption to the meeting",
+        "variants": [
+            "child cries",
+            "wandering children"
+        ],
+        "difficulty": "medium"
+    },
+    "speaker-gender": {
+        "name": "%s speaker",
+        "description": "The speaker is a %f",
+        "variants": [
+            "male",
+            "female"
+        ],
+        "difficulty": "easy"
+    },
+    "speaker-age": {
+        "name": "%s speaker",
+        "description": "The speaker is a %f",
+        "variants": [
+            "child",
+            "youth",
+            "young single adult",
+            "adult",
+            "elderly"
+        ],
+        "difficulty": "medium"
+    },
+    "speaker-group": {
+        "name": "%s speaker",
+        "description": "The speaker is a(n) %f",
+        "variants": [
+            "primary",
+            "deacon",
+            "teacher",
+            "priest",
+            "builder of faith",
+            "messenger of hope",
+            "gatherer of light",
+            "elder",
+            "high priest",
+            "relief society"
+        ],
+        "difficulty": "hard"
+    },
+    "group-speakers": {
+        "name": "%s speakers",
+        "description": "These people come to bear their testimony together",
+        "variants": [
+            "parent and child",
+            "sibling",
+            "grandparent and child",
+            "spouse"
+        ],
+        "difficulty": "hard"
+    },
+    "activity-mentioned": {
+        "name": "Activity: %s",
+        "description": "The speakers mentions this activity",
+        "variants": [
+            "general conference",
+            "youth conference",
+            "campout",
+            "ward activity",
+            "quorum activity",
+            "family home evening",
+            "stake dance"
+        ],
+        "difficulty": "hard"
+    },
+    "service": {
+        "name": "Service: %s",
+        "description": "This form of service is given during the meeting",
+        "variants": [
+            "Help up the stairs",
+            "Help to bear testimony"
+        ],
+        "difficulty": "medium"
+    }
+}
