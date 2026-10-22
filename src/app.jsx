@@ -15,14 +15,16 @@ export default function App() {
     const currentAuthState = userName ? AuthState.Authorized : AuthState.Unauthorized;
     const [authState, setAuthState] = React.useState(currentAuthState);
     const [gameID, setGameID] = React.useState(localStorage.getItem("gameID") || '00000');
-    const focusedText = "text-red-400 hover:text-red-300 dark:text-white dark:hover:text-amber-400 font-extrabold"
-    const unfocusedText = "text-gray-500 hover:text-red-300 dark:hover:text-white"
+
+    const focusedText = "text-red-400 hover:text-red-300 dark:text-white dark:hover:text-amber-400 font-extrabold";
+    const unfocusedText = "text-gray-500 hover:text-red-300 dark:hover:text-white";
+
     const [settings, setSettings] = React.useState({
         difficulty: 'easy',
         loadout: 'fast-and-testimony',
         focusMode: false,
         repeatsAllowed: false,
-    })
+    });
 
     return (
     <BrowserRouter>
