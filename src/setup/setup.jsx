@@ -28,15 +28,6 @@ export function Setup(properties) {
     createID(newID);
   }
 
-  function changeDifficulty(diff) {
-    // console.log(`Setting difficulty to ${diff}`)
-    properties.setSettings(prev => ({...prev, difficulty: diff}))
-  }
-
-  function toggleFocusMode() {
-    properties.settings
-  }
-
   async function createID(id) {
     localStorage.setItem("gameID", id);
     properties.onGameIDChange(id);
@@ -51,8 +42,64 @@ export function Setup(properties) {
     console.log(ID);
   }
 
-  function joinGame() {
+  async function joinGame() {
     localStorage.getItem("gameID"); // We can't connect to the game yet, but this is the placeholder
+  }
+
+  function changeDifficulty(diff) {
+    // console.log(`Setting difficulty to ${diff}`)
+    setDifficulty(diff)
+    properties.setSettings(prev => ({...prev, difficulty: diff}))
+  }
+
+  function highlightDifficultyButton(diff) {
+    if (difficulty == diff) {
+      return "bg-red-400 hover:bg-red-500 dark:bg-amber-400 dark:hover:bg-amber-500";
+    } else {
+      return "bg-red-200 hover:bg-red-300 dark:bg-amber-200 dark:hover:bg-amber-300";
+    }
+  }
+
+  function changeLoadout(load) {
+    // console.log(`Setting loadout to ${load}`)
+    setLoadout(load)
+    properties.setSettings(prev => ({...prev, loadout: load}))
+  }
+
+  function highlightLoadoutButton(load) {
+    if (loadout == load) {
+      return "dark:bg-red-400 dark:hover:bg-red-500 bg-amber-400 hover:bg-amber-700";
+    } else {
+      return "dark:bg-red-200 dark:hover:bg-red-300 bg-amber-200 hover:bg-amber-300";
+    }
+  }
+
+  function toggleFocusMode() {
+    // console.log(`Focus mode is: ${(focus == true) ? false : true}`)
+    setFocusMode((focus == true) ? false : true);
+    properties.setSettings(prev => ({...prev, focusMode: (focus == true) ? false : true}))
+  }
+
+  function highlightFocusButton() {
+    if (focus == true) {
+      return "bg-blue-400 hover:bg-blue-500 dark:bg-green-400 dark:hover:bg-green-500";
+    } else {
+      return "bg-blue-200 hover:bg-blue-300 dark:bg-green-200 dark:hover:bg-green-300";
+    }
+  }
+
+  function highlightRepeatButton() {
+    if (repeats == true) {
+      return "bg-blue-400 hover:bg-blue-500 dark:bg-green-400 dark:hover:bg-green-500";
+    } else {
+      return "bg-blue-200 hover:bg-blue-300 dark:bg-green-200 dark:hover:bg-green-300";
+    }
+  }
+
+  function toggleRepeatMode() {
+    // console.log(`Repeat mode is: ${(repeats == true) ? false : true}`)
+    setRepeats((repeats == true) ? false : true);
+    properties.setSettings(prev => ({...prev, repeatsAllowed: (repeats == true) ? false : true}))
   }
 
   return (
@@ -63,19 +110,19 @@ export function Setup(properties) {
           <div id="difficulty" className="settings-section">
             <label>Difficulty:</label>
             <button 
-                className="bg-red-400 hover:bg-red-500 dark:bg-amber-400 dark:hover:bg-amber-500" 
+                className = {highlightDifficultyButton("easy")}
                 type="button"
                 onClick = {() => changeDifficulty("easy")}>
               Easy
             </button>
             <button 
-                className="bg-red-400 hover:bg-red-500 dark:bg-amber-400 dark:hover:bg-amber-500" 
+                className = {highlightDifficultyButton("medium")}
                 type="button"
                 onClick = {() => changeDifficulty("medium")}>
               Medium
             </button>
             <button 
-                className="bg-red-400 hover:bg-red-500 dark:bg-amber-400 dark:hover:bg-amber-500" 
+                className = {highlightDifficultyButton("hard")}
                 type="button"
                 onClick = {() => changeDifficulty("hard")}>
               Hard
@@ -83,25 +130,31 @@ export function Setup(properties) {
           </div>
           <div id="bingo-loadout" className="settings-section">
             <label>Bingo Loadout:</label>
-            <button className="dark:bg-red-400 dark:hover:bg-red-500 bg-amber-400 hover:bg-amber-500" type="button">Fast & Testimony Meeting</button>
-            <button className="dark:bg-red-400 dark:hover:bg-red-500 bg-amber-400 hover:bg-amber-500" type="button">General Conference</button>
-            <div>
-              <button className="dark:bg-red-400 dark:hover:bg-red-500 bg-amber-400 hover:bg-amber-500" type="button">Custom:</button>
-              <input type="text" placeholder="Custom Loadout Link:" />
-            </div>
+            <button 
+                className = {highlightLoadoutButton("fast-and-testimony")}
+                type="button"
+                onClick = {() => changeLoadout("fast-and-testimony")}>
+              Fast & Testimony Meeting
+            </button>
+            <button 
+                className = {highlightLoadoutButton("general-conference")} 
+                type="button"
+                onClick = {() => changeLoadout("general-conference")}>
+              General Conference
+            </button>
           </div>
           <div id="modifiers" className="settings-section">
             <label>Modifiers:</label>
             <button 
-                className="bg-blue-400 hover:bg-blue-500 dark:bg-green-400 dark:hover:bg-green-500" 
+                className = {highlightFocusButton()}
                 type="button"
-                onClick = {() => setSettings((prev) => ({...prev, focusMode: true}))}>
+                onClick = {() => toggleFocusMode()}>
               Focus Mode
             </button>
             <button 
-                className="bg-blue-400 hover:bg-blue-500 dark:bg-green-400 dark:hover:bg-green-500" 
+                className = {highlightRepeatButton()}
                 type="button"
-                onClick = {() => setSettings((prev) => ({...prev, focusMode: true}))}>
+                onClick = {() => toggleRepeatMode()}>
               Repeats Allowed
             </button>
           </div>
