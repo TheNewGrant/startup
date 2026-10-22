@@ -20,8 +20,8 @@ export default function App() {
     const [settings, setSettings] = React.useState({
         difficulty: 'easy',
         loadout: 'fast-and-testimony',
-        focusMode: true,
-        repeatsAllowed: true,
+        focusMode: false,
+        repeatsAllowed: false,
     })
 
     return (
@@ -75,7 +75,7 @@ export default function App() {
                     <Setup 
                     gameID = {gameID} 
                     onGameIDChange = {(ID) => setGameID(ID)}
-                    onSettingsChange = {(setting) => setSettings(setting)}
+                    setSettings = {setSettings}
                     onGameSetup = {(gameID) => setGameID(gameID)}
                     />
                 } />
