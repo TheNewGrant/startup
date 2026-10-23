@@ -26,6 +26,8 @@ export default function App() {
         repeatsAllowed: false,
     });
 
+    const [score, setScore] = React.useState(0)
+
     return (
     <BrowserRouter>
         <div className="body">
