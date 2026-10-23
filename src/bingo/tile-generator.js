@@ -11,13 +11,29 @@ export class TileGenerator {
         }
     }
 
-    constructor(loadout) {
+    constructor(loadout, seed = "") {
         this.tileLoadout = loadout;
         this.tileTemplate = null;
         this.usedCategories = new Set();
         this.usedTiles = new Set();
         this.usedNames = new Set();
+        this.randomState = 2166136261;
+
+        for (const character of String(seed)) {
+            this.randomState = Math.imul(this.randomState ^ character.charCodeAt(0), 16777619) >>> 0;
+        }
+
         this.ready = this.loadTileTemplate(loadout);
+    }
+
+    random() {
+        this.randomState = (this.randomState + 0x6D2B79F5) >>> 0;
+        let value = this.randomState;
+
+        value = Math.imul(value ^ (value >>> 15), value | 1);
+        value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+
+        return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
     }
 
     async loadTileTemplate(loadout) {
@@ -100,7 +116,7 @@ export class TileGenerator {
             throw new Error("Not enough unique tiles to fill this board. Add repeatable variants or enable Repeats Allowed.");
         }
 
-        let randomDifficultySelect = Math.random() * totalWeight;
+        let randomDifficultySelect = this.random() * totalWeight;
         let tileSelectDifficulty = availableDifficulties[availableDifficulties.length - 1];
         for (const level of availableDifficulties) {
             randomDifficultySelect -= map[`${level}Weight`];
@@ -111,9 +127,9 @@ export class TileGenerator {
         }
 
         const matchingTiles = availableTiles.filter(entry => entry.tile.difficulty === tileSelectDifficulty);
-        const randomIndex = Math.floor(Math.random() * matchingTiles.length);
+        const randomIndex = Math.floor(this.random() * matchingTiles.length);
         const {key: selectedKey, tile: selectedTile, availableVariants} = matchingTiles[randomIndex];
-        const variantIndex = Math.floor(Math.random() * availableVariants.length);
+        const variantIndex = Math.floor(this.random() * availableVariants.length);
         const selectedVariant = availableVariants[variantIndex];
         const name = selectedVariant.name;
         const icon = selectedTile.icons?.[selectedVariant.variantIndex] ?? selectedTile.icons?.[0] ?? null;

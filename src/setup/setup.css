@@ -94,3 +94,7 @@ label {
         font-size: .8rem;
     }
 }
+
+#board-seed {
+    flex-wrap: wrap;
+}

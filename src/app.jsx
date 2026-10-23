@@ -10,6 +10,13 @@ import { About } from './about/about';
 import { Setup } from './setup/setup';
 import { AuthState } from './login/auth-state';
 
+const defaultSettings = {
+    difficulty: 'easy',
+    loadout: 'fast-and-testimony',
+    focusMode: false,
+    repeatsAllowed: false,
+};
+
 export default function App() {
     const [userName, setUserName] = React.useState(localStorage.getItem("userName") || "");
     const currentAuthState = userName ? AuthState.Authorized : AuthState.Unauthorized;
@@ -19,14 +26,35 @@ export default function App() {
     const focusedText = "text-red-400 hover:text-red-300 dark:text-white dark:hover:text-amber-400 font-extrabold";
     const unfocusedText = "text-gray-500 hover:text-red-300 dark:hover:text-white";
 
-    const [settings, setSettings] = React.useState({
-        difficulty: 'easy',
-        loadout: 'fast-and-testimony',
-        focusMode: false,
-        repeatsAllowed: false,
+    const [settings, setSettings] = React.useState(() => {
+        try {
+            const settingsText = localStorage.getItem("settings");
+            return settingsText ? {...defaultSettings, ...JSON.parse(settingsText)} : {...defaultSettings};
+        }
+        catch (err) {
+            return {...defaultSettings};
+        }
     });
 
-    const [score, setScore] = React.useState(0)
+    const [seed, setSeed] = React.useState(() => localStorage.getItem("seed") || gameID);
+    const [gameSession, setGameSession] = React.useState(() => localStorage.getItem("gameSession") || crypto.randomUUID());
+
+    React.useEffect(() => {
+        if (authState === AuthState.Authorized) {
+            localStorage.setItem("settings", JSON.stringify(settings));
+            localStorage.setItem("seed", seed);
+            localStorage.setItem("gameSession", gameSession);
+            localStorage.setItem("gameID", gameID);
+        }
+    }, [settings, seed, gameSession, gameID, authState]);
+
+    function handleGameSetup(gameID, seed) {
+        localStorage.removeItem("bingoProgress");
+
+        setGameID(gameID);
+        setSeed(seed);
+        setGameSession(crypto.randomUUID());
+    }
 
     return (
     <BrowserRouter>
@@ -60,8 +88,22 @@ export default function App() {
                     authState = {authState}
                     onAuthChange = {(userName, authState) => {
                         setUserName(userName);
-                        setAuthState(authState);}
+                        setAuthState(authState);
+
+                        if (authState === AuthState.Unauthorized) {
+                            localStorage.removeItem("settings");
+                            localStorage.removeItem("seed");
+                            localStorage.removeItem("gameSession");
+                            localStorage.removeItem("gameID");
+                            localStorage.removeItem("bingoProgress");
+
+                            setUserName("");
+                            setSettings({...defaultSettings});
+                            setSeed("");
+                            setGameSession("");
+                            setGameID("00000");
                         }
+                    }}
                     />
                 } exact 
             />
@@ -71,6 +113,8 @@ export default function App() {
                         userName = {userName} 
                         gameID = {gameID}
                         settings = {settings}
+                        seed = {seed}
+                        gameSession = {gameSession}
                     />
                 } 
             />
@@ -85,10 +129,10 @@ export default function App() {
             <Route path='/setup' element=
                 {
                     <Setup 
-                    gameID = {gameID} 
-                    onGameIDChange = {(ID) => setGameID(ID)}
-                    setSettings = {setSettings}
-                    onGameSetup = {(gameID) => setGameID(gameID)}
+                        gameID = {gameID} 
+                        settings = {settings}
+                        setSettings = {setSettings}
+                        onGameSetup = {handleGameSetup}
                     />
                 } />
             <Route path='*' element={<NotFound />} />

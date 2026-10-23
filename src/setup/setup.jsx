@@ -5,16 +5,22 @@ import { useNavigate } from "react-router-dom";
 export function Setup(properties) {
   const navigate = useNavigate();
   const [ID, setID] = React.useState("");
+  const [seed, setSeed] = React.useState("");
 
   // I use these to track which buttons should be highlighted
-  const [difficulty, setDifficulty] = React.useState("easy");
-  const [focus, setFocusMode] = React.useState(false);
-  const [repeats, setRepeats] = React.useState(false);
-  const [loadout, setLoadout] = React.useState("fast-and-testimony")
+  const [difficulty, setDifficulty] = React.useState(properties.settings.difficulty);
+  const [focus, setFocusMode] = React.useState(properties.settings.focusMode);
+  const [repeats, setRepeats] = React.useState(properties.settings.repeatsAllowed);
+  const [loadout, setLoadout] = React.useState(properties.settings.loadout)
 
   function handleSubmit(event) {
     event.preventDefault();
-    navigate("./../bingo")
+
+    if (event.nativeEvent.submitter?.value === "join") {
+      joinGame();
+    } else {
+      startGame();
+    }
   }
 
   function generateRandomID() {
@@ -23,27 +29,26 @@ export function Setup(properties) {
       let newDigit = Math.floor(Math.random() * 10);
       newID += String(newDigit);
     }
-    console.log("Generating ID")
-    console.log(newID);
-    createID(newID);
+    return newID;
   }
 
-  async function createID(id) {
-    localStorage.setItem("gameID", id);
-    properties.onGameIDChange(id);
+  function createID(id) {
+    const newSeed = seed.trim() || id;
+
+    properties.onGameSetup(id, newSeed);
+    navigate("./../bingo");
   }
 
-  async function startGame() {
-    if (!ID) {
-      generateRandomID()
-    } else {
-      createID(ID)
+  function startGame() {
+    createID(ID.trim() || generateRandomID());
+  }
+
+  function joinGame() {
+    if (!ID.trim()) {
+      return;
     }
-    console.log(ID);
-  }
 
-  async function joinGame() {
-    localStorage.getItem("gameID"); // We can't connect to the game yet, but this is the placeholder
+    createID(ID.trim());
   }
 
   function changeDifficulty(diff) {
@@ -103,8 +108,8 @@ export function Setup(properties) {
   }
 
   return (
-    <main className="dark:bg-slate-600">
-      <section className="bg-gray-200">
+    <main id="setup-page" className="dark:bg-slate-600">
+      <section id="setup-section" className="bg-gray-200">
         <h1 id="setup" className="caveat-brush-font">Settings</h1>
         <form method="get" onSubmit={handleSubmit}>
           <div id="difficulty" className="settings-section">
@@ -158,12 +163,23 @@ export function Setup(properties) {
               Repeats Allowed
             </button>
           </div>
+          <div id="board-seed" className="settings-section">
+            <label htmlFor="seed">Seed:</label>
+            <input 
+                id="seed"
+                type="text"
+                className="bg-white dark:bg-gray-700 dark:text-white"
+                placeholder="Optional - uses Game ID"
+                value = {seed}
+                onChange = {(e) => setSeed(e.target.value)}
+            />
+          </div>
           <br />
           <div id="enter-game" className="settings-section">
             <button 
                 className="dark:bg-blue-400 dark:hover:bg-blue-500 bg-green-400 hover:bg-green-500" 
                 type="submit"
-                onClick={() => startGame()}>
+                value="start">
               Start Game
             </button>
             <button 
@@ -175,12 +191,12 @@ export function Setup(properties) {
                   dark:disabled:text-white
                   disabled:bg-green-200" 
                 type="submit"
-                disabled = {!ID}
-                onClick = {() => joinGame()}>
+                value="join"
+                disabled = {!ID.trim()}>
               Join Game:
             </button>
             <input type="text" placeholder="Game ID" onChange = {(e) => setID(e.target.value)}/>
-            <label id="warning">Note: If the inputted ID is non-existent, a new game with that ID will be hosted.</label>
+            <label id="warning">Use the same Game ID or seed and the same settings to generate matching boards. Live game connections are not implemented yet.</label>
           </div>
         </form>
       </section>

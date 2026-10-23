@@ -279,3 +279,11 @@ input {
     height: auto;
     align-self: stretch;
 }
+
+#game-seed,
+#bingo-count {
+    font-size: 0.8rem;
+    line-height: 1.2;
+    margin: 0;
+    overflow-wrap: anywhere;
+}

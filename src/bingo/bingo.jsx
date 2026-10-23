@@ -26,11 +26,51 @@ export function Bingo(properties) {
   const {loadout, difficulty, repeatsAllowed = false} = properties.settings;
   const [tiles, setTiles] = React.useState([]);
   const [tileError, setTileError] = React.useState("");
+  const [readyBoard, setReadyBoard] = React.useState("");
+  const boardKey = JSON.stringify([
+    properties.userName,
+    properties.gameID,
+    properties.gameSession,
+    properties.seed,
+    loadout,
+    difficulty,
+    repeatsAllowed
+  ]);
 
+  // Loading Game Effect
   React.useEffect( () => {
     let cancelled = false;
+    setReadyBoard("");
     setTiles([]);
     setTileError("");
+
+    let savedGame = null;
+
+    try {
+      const progressText = localStorage.getItem("bingoProgress");
+      if (progressText) {
+        savedGame = JSON.parse(progressText);
+      }
+    }
+    catch (err) {
+      console.error("Could not load saved progress", err);
+    }
+
+    if (savedGame && savedGame.boardKey === boardKey) {
+      setTiles(savedGame.tiles);
+      setBingoBoard(savedGame.bingoBoard);
+      setRowBingos(savedGame.rowBingos);
+      setColBingos(savedGame.colBingos);
+      setDiaBingos(savedGame.diaBingos);
+      setPercentFilled(savedGame.percentFilled);
+      setScore(savedGame.score);
+      setMultiBingoBonuses(savedGame.multiBingoBonuses);
+      scoreID.current = savedGame.scoreID;
+      setReadyBoard(boardKey);
+
+      return () => cancelled = true;
+    }
+
     setBingoBoard(Array.from({length: 5}, () => Array(5).fill(false)));
     setRowBingos(0);
     setColBingos(0);
@@ -42,7 +82,7 @@ export function Bingo(properties) {
 
     async function loadGenerator() {
       try {
-        const tileGenerator = new TileGenerator(loadout);
+        const tileGenerator = new TileGenerator(loadout, properties.seed);
         await tileGenerator.ready;
         if (cancelled) {
           return;
@@ -52,7 +92,9 @@ export function Bingo(properties) {
         for (let i = 0; i < 25; i++) {
           generatedTiles.push(tileGenerator.generateRandomTile(difficulty, repeatsAllowed));
         }
+
         setTiles(generatedTiles);
+        setReadyBoard(boardKey);
       }
       catch (err) {
         if (!cancelled) {
@@ -64,7 +106,52 @@ export function Bingo(properties) {
     loadGenerator();
 
     return () => cancelled = true;
-  }, [loadout, difficulty, repeatsAllowed, properties.gameID]);
+  }, [
+    boardKey,
+    loadout,
+    difficulty,
+    repeatsAllowed,
+    properties.seed
+  ]);
+
+  // Progress Saving Effect
+  React.useEffect( () => {
+    if (readyBoard !== boardKey || tiles.length !== 25) {
+      return;
+    }
+
+    const savedGame = {
+      boardKey: boardKey,
+      tiles: tiles,
+      bingoBoard: bingoBoard,
+      rowBingos: rowBingos,
+      colBingos: colBingos,
+      diaBingos: diaBingos,
+      percentFilled: percentFilled,
+      score: score,
+      multiBingoBonuses: multiBingoBonuses,
+      scoreID: scoreID.current
+    };
+
+    try {
+      localStorage.setItem("bingoProgress", JSON.stringify(savedGame));
+    }
+    catch (err) {
+      console.error("Could not save bingo progress", err);
+      setTileError("Could not save progress. Check that browser storage is available before refreshing.");
+    }
+  }, [
+    readyBoard,
+    boardKey,
+    tiles,
+    bingoBoard,
+    rowBingos,
+    colBingos,
+    diaBingos,
+    percentFilled,
+    score,
+    multiBingoBonuses
+  ]);
 
   function countFilled(newBoard) {
     let fill = 0;
@@ -168,6 +255,10 @@ export function Bingo(properties) {
   }
 
     function handleBoardChange(updateBoard) {
+      if (readyBoard !== boardKey) {
+        return;
+      }
+
       const newBoard = updateBoard(bingoBoard);
       const previousTotal = rowBingos + colBingos + diaBingos;
       const newPercentFilled = countFilled(newBoard);
@@ -208,9 +299,10 @@ export function Bingo(properties) {
     }
 
   return (
-    <main className="dark:bg-slate-600">
+    <main id="bingo-page" className="dark:bg-slate-600">
     <section id="realtime-updates" className="bg-gray-200 dark:bg-gray-500 dark:text-white">
       <p id="game-id"><b>Game ID:</b> {properties.gameID}</p>
+      <p id="game-seed"><b>Seed:</b> {properties.seed}</p>
       <div className="players">
         <b>Player: </b>
         <span className="player-name">{properties.userName}</span>
@@ -227,7 +319,7 @@ export function Bingo(properties) {
       <div>
         <label htmlFor="count">Score</label>
         <input className="bg-white dark:bg-gray-700" type="text" id="count" value={score} readOnly />
-        <p>
+        <p id="bingo-count">
           {rowBingos + colBingos + diaBingos} {rowBingos + colBingos + diaBingos === 1 ? "bingo" : "bingos"}
           {percentFilled === 100 ? " - Blackout!" : ""}
         </p>
