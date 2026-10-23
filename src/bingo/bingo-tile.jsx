@@ -6,6 +6,7 @@ export function BingoTile(properties) {
     const {loadout, difficulty} = properties.settings;
     const [tileInfo, setTileInfo] = React.useState(null);
     const [marked, setMarked] = React.useState(true);
+    const [icon, setIcon] = React.useState(null);
 
     useEffect( () => {
         let cancelled = false;
@@ -19,6 +20,7 @@ export function BingoTile(properties) {
             
             if (!cancelled) {
                 setTileInfo(generatedTile);
+                setIcon(generatedTile.icons[Math.floor(Math.random() * generatedTile.icons.length)]);
             }
 
             }
@@ -59,22 +61,18 @@ export function BingoTile(properties) {
         console.log(properties.board);
     }
 
-    function Image({icon}) {
-        return (
-            <img
-            src={`https://api.iconify.design/fluent-emoji-flat/${icon}.svg`}
-            alt={icon}
-            />
-        )
-    }
-    const icon = tileInfo?.icons[Math.floor(Math.random() * tileInfo?.icons.length)];
     return (
         <td className={marked ? "bingo-tile" : "bg-red-300"} style={cornerStyle()}>
             <button 
                     className=""
                     onClick = {() => {setMarked(prev => !prev); updateCell(properties.row, properties.col, !properties.board[properties.row][properties.col])}}
             >
-              <Image icon = {icon}/>
+                {icon && (
+                    <img
+                    src={`https://api.iconify.design/fluent-emoji-flat/${icon}.svg`}
+                    alt={icon}
+                    />
+                )}
               <p>{tileInfo?.name ?? "Loading: This is a free space"}</p>
             </button>
         </td>
