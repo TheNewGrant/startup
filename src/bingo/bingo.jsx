@@ -104,10 +104,10 @@ export function Bingo(properties) {
   return (
     <main className="dark:bg-slate-600">
     <section id="realtime-updates" className="bg-gray-200 dark:bg-gray-500 dark:text-white">
-      <p id="game-id"><b>Game ID:</b> 12345</p>
+      <p id="game-id"><b>Game ID:</b> {properties.gameID}</p>
       <div className="players">
         <b>Player: </b>
-        <span className="player-name">Mason</span>
+        <span className="player-name">{properties.userName}</span>
       </div>
       <br/>
       <hr/>
@@ -122,7 +122,7 @@ export function Bingo(properties) {
       <br/>
       <div>
         <label htmlFor="count">Score</label>
-        <input className="bg-white dark:bg-gray-700" type="text" id="count" value="--" readOnly />
+        <input className="bg-white dark:bg-gray-700" type="text" id="count" value={(rowBingos + colBingos + diaBingos === 0) ? "--" : (rowBingos + colBingos + diaBingos)} readOnly />
       </div>
 
     </section>
