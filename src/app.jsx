@@ -63,7 +63,15 @@ export default function App() {
                     />
                 } exact 
             />
-            <Route path='/bingo' element={<Bingo userName = {userName} gameID = {gameID}/>} />
+            <Route path='/bingo' element=
+                {
+                    <Bingo 
+                        userName = {userName} 
+                        gameID = {gameID}
+                        settings = {settings}
+                    />
+                } 
+            />
             <Route path='/scores' element=
                 {
                     <Scores 
