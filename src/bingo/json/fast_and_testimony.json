@@ -16,7 +16,13 @@
         ],
         "difficulty": "easy",
         "icons": [
-            "hollow-red-circle"
+            "red-circle",
+            "orange-circle",
+            "yellow-circle",
+            "green-circle",
+            "blue-circle",
+            "purple-circle",
+            "white-circle"
         ]
     },
     "tie-color": {
