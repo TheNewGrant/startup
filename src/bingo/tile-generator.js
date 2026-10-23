@@ -14,6 +14,9 @@ export class TileGenerator {
     constructor(loadout) {
         this.tileLoadout = loadout;
         this.tileTemplate = null;
+        this.usedCategories = new Set();
+        this.usedTiles = new Set();
+        this.usedNames = new Set();
         this.ready = this.loadTileTemplate(loadout);
     }
 
@@ -30,6 +33,10 @@ export class TileGenerator {
 
         const url = new URL(`./json/${filename}`, import.meta.url);
         const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error(`Could not load tile template: ${response.status}`);
+        }
 
         const template = await response.json();
         this.tileTemplate = template;
@@ -49,37 +56,86 @@ export class TileGenerator {
         }
     }
 
-    generateRandomTile(difficulty) {
+    generateRandomTile(difficulty, repeatsAllowed = false) {
         if (this.tileTemplate === null) {
             throw new Error(
                 "Tiles have not loaded yet. Await generator.ready first."
             );
         }
-        
+
         const map = TileGenerator.difficultyMap[difficulty];
-        const randomDifficultySelect = Math.floor(Math.random() * 100) + 1;
-        const tileSelectDifficulty = this.withinDifficulty(randomDifficultySelect, map);
-        const matchingTiles = Object.entries(this.tileTemplate).filter(([keys, tile]) => tile.difficulty === tileSelectDifficulty);
-        const randomIndex = Math.floor(Math.random() * matchingTiles.length);
-        const [selectedKey, selectedTile] = matchingTiles[randomIndex];
-
-        let name = selectedTile.name;
-        let icon = selectedTile.icons?.[0] ?? null;
-        const variants = selectedTile.variants ?? [];
-
-        if (variants.length > 0) {
-            const variantIndex = Math.floor(Math.random() * variants.length);
-            const selectedVariant = variants[variantIndex];
-            icon = selectedTile.icons?.[variantIndex] ?? icon;
-
-            name = name.replace(/%[sf]/g, (placeholder) => {
-                if (placeholder === "%s") {
-                    return selectedVariant.charAt(0).toUpperCase()
-                        + selectedVariant.slice(1);
-                }
-                return selectedVariant});
+        if (!map) {
+            throw new Error(`Unknown difficulty: ${difficulty}`);
         }
 
-        return {...selectedTile, id: selectedKey, name, icon}; // This is the item info that you then use to fill in the name field, etc
+        const availableTiles = [];
+        for (const [key, tile] of Object.entries(this.tileTemplate)) {
+            if (!repeatsAllowed && !tile["always-repeatable"] && this.usedCategories.has(key)) {
+                continue;
+            }
+
+            const variants = tile.variants ?? [];
+            const availableVariants = [];
+            for (let i = 0; i < Math.max(variants.length, 1); i++) {
+                const variant = variants[i] ?? null;
+                const tileID = JSON.stringify([key, variant]);
+                const name = this.formatTileText(tile.name, variant);
+
+                if (repeatsAllowed || (!this.usedTiles.has(tileID) && !this.usedNames.has(name))) {
+                    availableVariants.push({variant, variantIndex: i, tileID, name});
+                }
+            }
+
+            if (availableVariants.length > 0) {
+                availableTiles.push({key, tile, availableVariants});
+            }
+        }
+
+        // Only roll difficulties that still have tiles available.
+        const availableDifficulties = Object.keys(TileGenerator.difficultyMap).filter(level =>
+            availableTiles.some(entry => entry.tile.difficulty === level)
+        );
+        const totalWeight = availableDifficulties.reduce((total, level) => total + map[`${level}Weight`], 0);
+        if (totalWeight === 0) {
+            throw new Error("Not enough unique tiles to fill this board. Add repeatable variants or enable Repeats Allowed.");
+        }
+
+        let randomDifficultySelect = Math.random() * totalWeight;
+        let tileSelectDifficulty = availableDifficulties[availableDifficulties.length - 1];
+        for (const level of availableDifficulties) {
+            randomDifficultySelect -= map[`${level}Weight`];
+            if (randomDifficultySelect < 0) {
+                tileSelectDifficulty = level;
+                break;
+            }
+        }
+
+        const matchingTiles = availableTiles.filter(entry => entry.tile.difficulty === tileSelectDifficulty);
+        const randomIndex = Math.floor(Math.random() * matchingTiles.length);
+        const {key: selectedKey, tile: selectedTile, availableVariants} = matchingTiles[randomIndex];
+        const variantIndex = Math.floor(Math.random() * availableVariants.length);
+        const selectedVariant = availableVariants[variantIndex];
+        const name = selectedVariant.name;
+        const icon = selectedTile.icons?.[selectedVariant.variantIndex] ?? selectedTile.icons?.[0] ?? null;
+        const description = this.formatTileText(selectedTile.description, selectedVariant.variant);
+
+        this.usedCategories.add(selectedKey);
+        this.usedTiles.add(selectedVariant.tileID);
+        this.usedNames.add(name);
+
+        return {...selectedTile, id: selectedKey, tileID: selectedVariant.tileID, variant: selectedVariant.variant, name, description, icon};
+    }
+
+    formatTileText(text, variant) {
+        if (variant === null) {
+            return text;
+        }
+
+        return text.replace(/%[sf]/g, (placeholder) => {
+            if (placeholder === "%s") {
+                return variant.charAt(0).toUpperCase() + variant.slice(1);
+            }
+            return variant;
+        });
     }
 };

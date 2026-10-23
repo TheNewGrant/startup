@@ -1,39 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import './bingo.css';
-import { TileGenerator } from "./tile-generator"
 
 export function BingoTile(properties) {
-    const {loadout, difficulty} = properties.settings;
-    const [tileInfo, setTileInfo] = React.useState(null);
-    const [marked, setMarked] = React.useState(true);
-    const [icon, setIcon] = React.useState(null);
-
-    useEffect( () => {
-        let cancelled = false;
-
-        async function loadGenerator() {
-            try {
-            const tileGenerator = new TileGenerator(loadout);
-            await tileGenerator.ready;
-
-            const generatedTile = await tileGenerator.generateRandomTile(difficulty);
-            
-            if (!cancelled) {
-                setTileInfo(generatedTile);
-                setIcon(generatedTile.icon);
-            }
-
-            }
-            catch (err) {
-                if (!cancelled) {
-                    console.error("Could not load the bingo tile", err);
-                }
-            }
-        }
-        loadGenerator();
-        
-        return () => cancelled = true;
-    }, [loadout, difficulty]);
+    const tileInfo = properties.tileInfo;
+    const icon = tileInfo?.icon;
+    const marked = !properties.board[properties.row][properties.col];
 
     function cornerStyle() {
         if (properties.corner === "lower-right") {
@@ -65,7 +36,8 @@ export function BingoTile(properties) {
         <td className={marked ? "bingo-tile" : "bg-red-300"} style={cornerStyle()}>
             <button 
                     className=""
-                    onClick = {() => {setMarked(prev => !prev); updateCell(properties.row, properties.col, !properties.board[properties.row][properties.col])}}
+                    disabled = {!tileInfo}
+                    onClick = {() => {updateCell(properties.row, properties.col, !properties.board[properties.row][properties.col])}}
             >
                 {icon && (
                     <img
@@ -73,7 +45,7 @@ export function BingoTile(properties) {
                     alt={icon}
                     />
                 )}
-              <p>{tileInfo?.name ?? "Loading: This is a free space"}</p>
+              <p>{tileInfo?.name ?? "Loading..."}</p>
             </button>
         </td>
     )
