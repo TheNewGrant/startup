@@ -3,6 +3,7 @@ import './bingo.css';
 import { TileGenerator } from './tile-generator'
 import { BingoTile } from './bingo-tile';
 import { GameEvent, GameNotifier } from './game-notifier';
+import { Players } from './players';
 
 export function Bingo(properties) {
   const [bingoBoard, setBingoBoard] = React.useState(
@@ -125,11 +126,9 @@ export function Bingo(properties) {
       <br/>
       <hr/>
       <br/>
-      <ul className="notification">
-        <li className="player-name">Jeff joined the bingo game</li>
-        <li className="player-name">George scored a bingo</li>
-        <li className="player-name">Anna completed a category</li>
-      </ul>
+      <Players>
+        
+      </Players>
       <br/>
       <hr/>
       <br/>

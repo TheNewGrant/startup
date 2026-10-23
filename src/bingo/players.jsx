@@ -1,4 +1,5 @@
 import React from "react";
+import { GameNotifier, GameEvent } from "./game-notifier";
 
 export function Players() {
   const [events, setEvent] = React.useState([]);
@@ -14,8 +15,8 @@ export function Players() {
   function handleGameEvent(event) {
     setEvent((prevEvents) => {
       let newEvents = [event, ...prevEvents];
-      if (newEvents.length > 10) {
-        newEvents = newEvents.slice(1, 10);
+      if (newEvents.length > 5) {
+        newEvents = newEvents.slice(1, 5);
       }
       return newEvents;
     });
@@ -26,20 +27,26 @@ export function Players() {
     for (const [i, event] of events.entries()) {
       let message = 'unknown';
       if (event.type === GameEvent.End) {
-        message = `scored ${event.value.score}`;
+        message = `${event.value.name} scored ${event.value.score} bingo`;
       } else if (event.type === GameEvent.Start) {
         message = `started a new game`;
       } else if (event.type === GameEvent.System) {
         message = event.value.msg;
+      } else if (event.type === GameEvent.NewScore) {
+        message = `${event.value.name} scored a bingo!`;
       }
 
       messageArray.push(
-        <div key={i} className='event'>
-          <span className={'player-event'}>{event.from.split('@')[0]}</span>
+        <li key={i} className='player-name'>
           {message}
-        </div>
+        </li>
       );
     }
     return messageArray;
   }
+  return (
+      <ul className="notification">
+          {createMessageArray()}
+      </ul>
+  )
 }
