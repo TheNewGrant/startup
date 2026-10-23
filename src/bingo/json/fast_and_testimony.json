@@ -15,6 +15,7 @@
             "brown"
         ],
         "difficulty": "easy",
+        "always-repeatable": true,
         "icons": [
             "red-circle",
             "orange-circle",
@@ -47,6 +48,7 @@
             "floral"
         ],
         "difficulty": "easy",
+        "always-repeatable": true,
         "icons": [
             "red-circle",
             "orange-circle",
@@ -84,6 +86,7 @@
             "long"
         ],
         "difficulty": "medium",
+        "always-repeatable": true,
         "icons": [
             "red-circle",
             "orange-circle",
@@ -110,6 +113,7 @@
             "non-white"
         ],
         "difficulty": "easy",
+        "always-repeatable": false,
         "icons": [
             "white-circle",
             "t-shirt"
@@ -126,6 +130,7 @@
             "non-button-downed"
         ],
         "difficulty": "medium",
+        "always-repeatable": false,
         "icons": [
             "black-circle",
             "t-shirt",
@@ -139,6 +144,7 @@
         "description": "The speaker is wearing glasses",
         "variants": [],
         "difficulty": "easy",
+        "always-repeatable": false,
         "icons": [
             "glasses"
         ]
@@ -153,6 +159,7 @@
             "bowtie"
         ],
         "difficulty": "medium",
+        "always-repeatable": false,
         "icons": [
             "prayer-beads",
             "prayer-beads",
@@ -165,6 +172,7 @@
         "description": "The speaker is wearing jeans",
         "variants": [],
         "difficulty": "easy",
+        "always-repeatable": false,
         "icons": [
             "jeans"
         ]
@@ -174,11 +182,12 @@
         "description": "A female speaker is wearing jeans",
         "variants": [],
         "difficulty": "hard",
+        "always-repeatable": false,
         "icons": [
             "jeans"
         ]
     },
-    "tesimony-topic": {
+    "testimony-topic": {
         "name": "Testimony topic: %s",
         "description": "The speaker talks about %f",
         "variants": [
@@ -230,6 +239,7 @@
             "previous speaker"
         ],
         "difficulty": "easy",
+        "always-repeatable": true,
         "icons": [
             "speaking-head",
             "scroll",
@@ -251,6 +261,7 @@
             "last general conference"
         ],
         "difficulty": "medium",
+        "always-repeatable": true,
         "icons": [
             "blue-book",
             "green-book",
@@ -269,6 +280,7 @@
             "annoying insect"
         ],
         "difficulty": "hard",
+        "always-repeatable": false,
         "icons": [
             "mobile-phone",
             "face-with-medical-mask",
@@ -283,6 +295,7 @@
             "wandering children"
         ],
         "difficulty": "medium",
+        "always-repeatable": false,
         "icons": [
             "crying-face",
             "children-crossing"
@@ -296,6 +309,7 @@
             "female"
         ],
         "difficulty": "easy",
+        "always-repeatable": false,
         "icons": [
             "male-sign",
             "female-sign"
@@ -312,6 +326,7 @@
             "elderly"
         ],
         "difficulty": "medium",
+        "always-repeatable": false,
         "icons": [
             "child",
             "student",
@@ -336,6 +351,7 @@
             "relief society"
         ],
         "difficulty": "hard",
+        "always-repeatable": false,
         "icons": [
             "child",
             "boy",
@@ -359,6 +375,7 @@
             "spouse"
         ],
         "difficulty": "hard",
+        "always-repeatable": false,
         "icons": [
             "people-hugging",
             "children-crossing",
@@ -379,6 +396,7 @@
             "stake dance"
         ],
         "difficulty": "hard",
+        "always-repeatable": false,
         "icons": [
             "studio-microphone",
             "people-hugging",
@@ -397,6 +415,7 @@
             "Help to bear testimony"
         ],
         "difficulty": "medium",
+        "always-repeatable": false,
         "icons": [
             "handshake",
             "microphone"
@@ -407,6 +426,7 @@
         "description": "Free space, nothing required to check this one off",
         "variants": [],
         "difficulty": "easy",
+        "always-repeatable": false,
         "icons": [
             "white-flag"
         ]
@@ -416,6 +436,7 @@
         "description": "Bear your testimony",
         "variants": [],
         "difficulty": "hard",
+        "always-repeatable": false,
         "icons": [
             "love-you-gesture"
         ]
