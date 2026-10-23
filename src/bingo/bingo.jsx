@@ -17,6 +17,11 @@ export function Bingo(properties) {
   const [colBingos, setColBingos] = React.useState(0);
   const [diaBingos, setDiaBingos] = React.useState(0);
   const [percentFilled, setPercentFilled] = React.useState(0);
+  const [score, setScore] = React.useState(0);
+  const [multiBingoBonuses, setMultiBingoBonuses] = React.useState(
+    Array.from({length: 5}, () => Array(5).fill(0))
+  );
+  const scoreID = React.useRef("");
 
   const {loadout, difficulty, repeatsAllowed = false} = properties.settings;
   const [tiles, setTiles] = React.useState([]);
@@ -31,6 +36,9 @@ export function Bingo(properties) {
     setColBingos(0);
     setDiaBingos(0);
     setPercentFilled(0);
+    setScore(0);
+    setMultiBingoBonuses(Array.from({length: 5}, () => Array(5).fill(0)));
+    scoreID.current = crypto.randomUUID();
 
     async function loadGenerator() {
       try {
@@ -71,7 +79,7 @@ export function Bingo(properties) {
     return fill * 4;
   }
 
-  function detectBingo(newBoard, newPercentFilled) {
+  function detectBingo(newBoard) {
     let numRowBingos = 0;
     let numColBingos = 0;
     let numDiagonalBingos = 0;
@@ -103,29 +111,33 @@ export function Bingo(properties) {
       numDiagonalBingos++;
     }
 
-    const previousTotal = rowBingos + colBingos + diaBingos;
     const newTotal = numRowBingos + numColBingos + numDiagonalBingos;
-
-    console.log("Totals:", previousTotal, newTotal);
-
-    if (newTotal > previousTotal) {
-      saveScore(newTotal, newPercentFilled)
-    }
 
     setRowBingos(numRowBingos);
     setColBingos(numColBingos);
     setDiaBingos(numDiagonalBingos);
+
+    return newTotal;
   }
 
-  async function saveScore(score, newPercentFilled) {
-    const date = new Date().toLocaleDateString();
-    const newScore = { name: properties.userName, score: score, fill: newPercentFilled, date: date };
+    async function saveScore(score, newPercentFilled, bingos, announceScore) {
+      const date = new Date().toLocaleDateString();
+      const newScore = {
+        id: scoreID.current,
+        name: properties.userName,
+        score: score,
+        fill: newPercentFilled,
+        bingos: bingos,
+        date: date
+      };
 
-    // Let other players know the game has concluded
-    GameNotifier.broadcastEvent(properties.userName, GameEvent.End, newScore);
+      if (announceScore) {
+        const eventType = newPercentFilled === 100 ? GameEvent.End : GameEvent.NewScore;
+        GameNotifier.broadcastEvent(properties.userName, eventType, newScore);
+      }
 
-    updateScoresLocal(newScore);
-  }
+      updateScoresLocal(newScore);
+    }
 
   function updateScoresLocal(newScore) {
     let scores = [];
@@ -133,6 +145,7 @@ export function Bingo(properties) {
     if (scoresText) {
       scores = JSON.parse(scoresText);
     }
+    scores = scores.filter(prevScore => prevScore.id !== newScore.id);
 
     let found = false;
     for (const [i, prevScore] of scores.entries()) {
@@ -154,14 +167,45 @@ export function Bingo(properties) {
     localStorage.setItem('scores', JSON.stringify(scores));
   }
 
-  function handleBoardChange(updateBoard) {
-    const newBoard = updateBoard(bingoBoard);
+    function handleBoardChange(updateBoard) {
+      const newBoard = updateBoard(bingoBoard);
+      const previousTotal = rowBingos + colBingos + diaBingos;
+      const newPercentFilled = countFilled(newBoard);
+      const newTotal = detectBingo(newBoard);
+      const newBonuses = multiBingoBonuses.map(row => [...row]);
+      const difficultyPoints = {easy: 1, medium: 2, hard: 3};
+      let newScore = 0;
 
-    setBingoBoard(newBoard);
+      for (let i = 0; i < 5; i++) {
+        for (let j = 0; j < 5; j++) {
+          if (newBoard[i][j] !== bingoBoard[i][j]) {
+            if (newBoard[i][j] && newTotal - previousTotal > 1) {
+              newBonuses[i][j] = 10;
+            } else {
+              newBonuses[i][j] = 0;
+            }
+          }
 
-    const newPercentFilled = countFilled(newBoard);
-    detectBingo(newBoard, newPercentFilled);
-  }
+          if (newBoard[i][j] === true) {
+            const tile = tiles[i * 5 + j];
+            newScore += difficultyPoints[tile?.difficulty] ?? 2;
+            newScore += newBonuses[i][j];
+          }
+        }
+      }
+
+      newScore += newTotal * 5;
+
+      if (newPercentFilled === 100) {
+        newScore += 20;
+      }
+
+      setBingoBoard(newBoard);
+      setMultiBingoBonuses(newBonuses);
+      setScore(newScore);
+
+      saveScore(newScore, newPercentFilled, newTotal, newTotal > previousTotal);
+    }
 
   return (
     <main className="dark:bg-slate-600">
@@ -182,7 +226,11 @@ export function Bingo(properties) {
       <br/>
       <div>
         <label htmlFor="count">Score</label>
-        <input className="bg-white dark:bg-gray-700" type="text" id="count" value={(rowBingos + colBingos + diaBingos === 0) ? "--" : (rowBingos + colBingos + diaBingos)} readOnly />
+        <input className="bg-white dark:bg-gray-700" type="text" id="count" value={score} readOnly />
+        <p>
+          {rowBingos + colBingos + diaBingos} {rowBingos + colBingos + diaBingos === 1 ? "bingo" : "bingos"}
+          {percentFilled === 100 ? " - Blackout!" : ""}
+        </p>
       </div>
 
     </section>

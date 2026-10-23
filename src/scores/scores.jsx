@@ -18,22 +18,23 @@ export function Scores() {
   const scoreRows = [];
   if (scores.length) {
     for (const [i, score] of scores.entries()) {
+      const bingos = score.bingos ?? score.score;
       scoreRows.push(
         <tr key={i}>
           <td>{i + 1}</td>
           <td>{score.name}</td>
           <td>{score.score}</td>
           <td>{score.fill}</td>
-          <td>{score.score}</td>
+          <td>{bingos} {bingos === 1 ? "bingo" : "bingos"}{score.fill === 100 ? " - Blackout!" : ""}</td>
           <td>{score.date}</td>
         </tr>
       );
       personalRows.push(
-        <tr keys={i}>
+        <tr key={i}>
           <td>{i + 1}</td>
           <td>{score.score}</td>
           <td>{score.fill}</td>
-          <td>{score.score}</td>
+          <td>{bingos} {bingos === 1 ? "bingo" : "bingos"}{score.fill === 100 ? " - Blackout!" : ""}</td>
           <td>{score.date}</td>
         </tr>
       )

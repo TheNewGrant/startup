@@ -20,11 +20,12 @@ class GameEventNotifier {
   constructor() {
     // Simulate chat messages that will eventually come over WebSocket
     setInterval(() => {
-      const score = Math.floor(Math.random() * 50);
-      const fill = Math.floor(Math.random() * 100);
+      const bingos = Math.floor(Math.random() * 2);
+      const fill = bingos === 1 ? 20 : 4;
+      const score = bingos === 1 ? 15 : 2;
       const date = new Date().toLocaleDateString();
       const userName = 'John';
-      this.broadcastEvent(userName, GameEvent.NewScore, { name: userName, score: score, fill: fill, date: date });
+      this.broadcastEvent(userName, GameEvent.NewScore, { name: userName, score: score, fill: fill, bingos: bingos, date: date });
     }, 5000);
   }
 
@@ -38,7 +39,7 @@ class GameEventNotifier {
   }
 
   removeHandler(handler) {
-    this.handlers.filter((h) => h !== handler);
+    this.handlers = this.handlers.filter((h) => h !== handler);
   }
 
   receiveEvent(event) {
