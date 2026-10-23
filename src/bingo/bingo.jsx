@@ -2,8 +2,86 @@ import React from 'react';
 import './bingo.css';
 import { TileGenerator } from './tile-generator'
 import { BingoTile } from './bingo-tile';
+import { GameEvent, GameNotifier } from './game-notifier';
 
 export function Bingo(properties) {
+  const [bingoBoard, setBingoBoard] = React.useState(
+    [[false, false, false, false, false], 
+    [false, false, false, false, false], 
+    [false, false, false, false, false], 
+    [false, false, false, false, false], 
+    [false, false, false, false, false]]
+  );
+  const [rowBingos, setRowBingos] = React.useState(0);
+  const [colBingos, setColBingos] = React.useState(0);
+
+  function detectBingo() {
+    let numRowBingos = 0;
+    let numColBingos = 0;
+    for (let i = 0; i < 5; i++) {
+      const row = bingoBoard[i];
+      const rowAllTrue = row.every(value => value === true);
+      if (rowAllTrue) {
+        numRowBingos++;
+      }
+      let col = []
+      for (let j = 0; j < 5; j++) {
+        col.push(bingoBoard[j][i]);
+      }
+      const colAllTrue = col.every(value => value === true);
+      if (colAllTrue) {
+        numColBingos++;
+      }
+    }
+
+    const previousTotal = rowBingos + colBingos;
+    const newTotal = numRowBingos + numColBingos;
+
+    if (newTotal > previousTotal) {
+      saveScore(newTotal)
+    }
+
+    setRowBingos(numRowBingos);
+    setColBingos(numColBingos)
+  }
+
+  async function saveScore(score) {
+    const date = new Date().toLocaleDateString();
+    const newScore = { name: properties.userName, score: score, date: date };
+
+    // Let other players know the game has concluded
+    GameNotifier.broadcastEvent(properties.userName, GameEvent.End, newScore);
+
+    updateScoresLocal(newScore);
+  }
+
+  function updateScoresLocal(newScore) {
+    let scores = [];
+    const scoresText = localStorage.getItem('scores');
+    if (scoresText) {
+      scores = JSON.parse(scoresText);
+    }
+
+    let found = false;
+    for (const [i, prevScore] of scores.entries()) {
+      if (newScore.score > prevScore.score) {
+        scores.splice(i, 0, newScore);
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) {
+      scores.push(newScore);
+    }
+
+    if (scores.length > 10) {
+      scores.length = 10;
+    }
+
+    localStorage.setItem('scores', JSON.stringify(scores));
+  }
+
 
   return (
     <main className="dark:bg-slate-600">
@@ -35,87 +113,87 @@ export function Bingo(properties) {
       <table id="bingo-board" className="bg-white dark:bg-gray-600">
         <caption>Bingo Board</caption>
         <tr>
-          <BingoTile settings = {properties.settings} corner = {"upper-left"}>
+          <BingoTile settings = {properties.settings} corner = {"upper-left"} row = {0} col={0} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings} >
+          <BingoTile settings = {properties.settings} row = {0} col={1} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings} >
+          <BingoTile settings = {properties.settings} row = {0} col={2} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings} >
+          <BingoTile settings = {properties.settings} row = {0} col={3} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings} corner = {"upper-right"}>
-
-          </BingoTile>
-        </tr>
-        <tr>
-          <BingoTile settings = {properties.settings} >
-
-          </BingoTile>
-          <BingoTile settings = {properties.settings} >
-
-          </BingoTile>
-          <BingoTile settings = {properties.settings} >
-
-          </BingoTile>
-          <BingoTile settings = {properties.settings} >
-
-          </BingoTile>
-          <BingoTile settings = {properties.settings} >
+          <BingoTile settings = {properties.settings} corner = {"upper-right"} row = {0} col={4} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
         </tr>
         <tr>
-          <BingoTile settings = {properties.settings} >
+          <BingoTile settings = {properties.settings} row = {1} col={0} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings} >
+          <BingoTile settings = {properties.settings} row = {1} col={1} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings} >
+          <BingoTile settings = {properties.settings} row = {1} col={2} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings} >
+          <BingoTile settings = {properties.settings} row = {1} col={3} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings} >
-
-          </BingoTile>
-        </tr>
-        <tr>
-          <BingoTile settings = {properties.settings} >
-
-          </BingoTile>
-          <BingoTile settings = {properties.settings} >
-
-          </BingoTile>
-          <BingoTile settings = {properties.settings} >
-
-          </BingoTile>
-          <BingoTile settings = {properties.settings} >
-
-          </BingoTile>
-          <BingoTile settings = {properties.settings} >
+          <BingoTile settings = {properties.settings} row = {1} col={4} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
         </tr>
         <tr>
-          <BingoTile settings = {properties.settings} corner = {"lower-left"}>
+          <BingoTile settings = {properties.settings} row = {2} col={0} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings}>
+          <BingoTile settings = {properties.settings} row = {2} col={1} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings}>
+          <BingoTile settings = {properties.settings} row = {2} col={2} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings}>
+          <BingoTile settings = {properties.settings} row = {2} col={3} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
-          <BingoTile settings = {properties.settings} corner = {"lower-right"}>
+          <BingoTile settings = {properties.settings} row = {2} col={4} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
+
+          </BingoTile>
+        </tr>
+        <tr>
+          <BingoTile settings = {properties.settings} row = {3} col={0} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
+
+          </BingoTile>
+          <BingoTile settings = {properties.settings} row = {3} col={1} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
+
+          </BingoTile>
+          <BingoTile settings = {properties.settings} row = {3} col={2} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
+
+          </BingoTile>
+          <BingoTile settings = {properties.settings} row = {3} col={3} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
+
+          </BingoTile>
+          <BingoTile settings = {properties.settings} row = {3} col={4} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
+
+          </BingoTile>
+        </tr>
+        <tr>
+          <BingoTile settings = {properties.settings} corner = {"lower-left"} row = {4} col={0} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
+
+          </BingoTile>
+          <BingoTile settings = {properties.settings} row = {4} col={1} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
+
+          </BingoTile>
+          <BingoTile settings = {properties.settings} row = {4} col={2} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
+
+          </BingoTile>
+          <BingoTile settings = {properties.settings} row = {4} col={3} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
+
+          </BingoTile>
+          <BingoTile settings = {properties.settings} corner = {"lower-right"} row = {4} col={4} onBoardChange={(newBoard) => setBingoBoard(newBoard)} board={bingoBoard}>
 
           </BingoTile>
         </tr>
