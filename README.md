@@ -115,10 +115,12 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 ## 🚀 React part 2: Reactivity deliverable
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
+NOTE: After implementing each feature into the program, I went back with AI to fix bugs and catch mistakes and
+add extra things I didn't have time and energy for.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **All functionality implemented or mocked out** - I did not complete this part of the deliverable.
-- [ ] **Hooks** - I did not complete this part of the deliverable.
+- [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [X] **All functionality implemented or mocked out** - I added functionality to all the pieces, including the login, setup, bingo and scores page. Each setting works and the board reacts to your input.
+- [X] **Hooks** - I used both useState and useEffect hooks. useState was used for almost everything while useEffect was to help load and keep rendered the bingo board and scores.
 
 ## 🚀 Service deliverable
 
