@@ -9,6 +9,11 @@ footer {
     padding: 0.5rem 10px;
 }
 
+.bingo-tile {
+    overflow: hidden;
+    min-height: 100%;
+}
+
 
 /* Desktop / wide-screen layout */
 main {
