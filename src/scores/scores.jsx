@@ -2,6 +2,50 @@ import React from 'react';
 import './scores.css';
 
 export function Scores() {
+  const [scores, setScores] = React.useState([]);
+
+  // Demonstrates calling a service asynchronously so that
+  // React can properly update state objects with the results.
+  React.useEffect(() => {
+    const scoresText = localStorage.getItem('scores');
+    if (scoresText) {
+      setScores(JSON.parse(scoresText));
+    }
+  }, []);
+
+  // Demonstrates rendering an array with React
+  const personalRows = [];
+  const scoreRows = [];
+  if (scores.length) {
+    for (const [i, score] of scores.entries()) {
+      scoreRows.push(
+        <tr key={i}>
+          <td>{i + 1}</td>
+          <td>{score.name}</td>
+          <td>{score.score}</td>
+          <td>{score.fill}</td>
+          <td>{score.score}</td>
+          <td>{score.date}</td>
+        </tr>
+      );
+      personalRows.push(
+        <tr keys={i}>
+          <td>{i + 1}</td>
+          <td>{score.score}</td>
+          <td>{score.fill}</td>
+          <td>{score.score}</td>
+          <td>{score.date}</td>
+        </tr>
+      )
+    }
+  } else {
+    scoreRows.push(
+      <tr key='0'>
+        <td colSpan='4'>Be the first to score</td>
+      </tr>
+    );
+  }
+
   return (
     <main className="dark:bg-slate-600">
       <section id="global-scores" className="bg-yellow-200">
@@ -19,30 +63,7 @@ export function Scores() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mason Grant</td>
-              <td>50</td>
-              <td>100%</td>
-              <td>Blackout</td>
-              <td>May 20, 2026</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>James Spencer</td>
-              <td>21</td>
-              <td>60%</td>
-              <td>3 Bingos</td>
-              <td>May 20, 2026</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Anna Smith</td>
-              <td>7</td>
-              <td>20%</td>
-              <td>1 Bingo</td>
-              <td>July 3, 2026</td>
-            </tr>
+            {scoreRows}
           </tbody>
         </table>
       </section>
@@ -60,27 +81,7 @@ export function Scores() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>50</td>
-              <td>100%</td>
-              <td>Blackout</td>
-              <td>May 20, 2026</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>21</td>
-              <td>60%</td>
-              <td>3 Bingos</td>
-              <td>May 28, 2026</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>14</td>
-              <td>40%</td>
-              <td>2 Bingos</td>
-              <td>April 5, 2026</td>
-            </tr>
+            {personalRows}
           </tbody>
         </table>
       </section>
