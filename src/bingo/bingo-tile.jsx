@@ -20,7 +20,7 @@ export function BingoTile(properties) {
             
             if (!cancelled) {
                 setTileInfo(generatedTile);
-                setIcon(generatedTile.icons[Math.floor(Math.random() * generatedTile.icons.length)]);
+                setIcon(generatedTile.icon);
             }
 
             }

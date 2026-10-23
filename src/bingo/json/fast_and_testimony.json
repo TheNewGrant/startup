@@ -3,14 +3,14 @@
         "name": "%s article of clothing",
         "description": "The speaker is wearing %f clothes",
         "variants": [
-            "red", 
-            "orange", 
-            "yellow", 
-            "green", 
-            "blue", 
-            "purple", 
-            "pink", 
-            "black", 
+            "red",
+            "orange",
+            "yellow",
+            "green",
+            "blue",
+            "purple",
+            "pink",
+            "black",
             "white",
             "brown"
         ],
@@ -22,21 +22,24 @@
             "green-circle",
             "blue-circle",
             "purple-circle",
-            "white-circle"
+            "pink-heart",
+            "black-circle",
+            "white-circle",
+            "brown-circle"
         ]
     },
     "tie-color": {
         "name": "%s tie",
         "description": "The speaker is wearing a %f tie",
         "variants": [
-            "red", 
-            "orange", 
-            "yellow", 
-            "green", 
-            "blue", 
-            "purple", 
-            "pink", 
-            "black", 
+            "red",
+            "orange",
+            "yellow",
+            "green",
+            "blue",
+            "purple",
+            "pink",
+            "black",
             "white",
             "brown",
             "patterned",
@@ -45,21 +48,33 @@
         ],
         "difficulty": "easy",
         "icons": [
-            "necktie"
+            "red-circle",
+            "orange-circle",
+            "yellow-circle",
+            "green-circle",
+            "blue-circle",
+            "purple-circle",
+            "pink-heart",
+            "black-circle",
+            "white-circle",
+            "brown-circle",
+            "necktie",
+            "necktie",
+            "blossom"
         ]
     },
     "dress-color": {
         "name": "%s dress",
         "description": "A female speaker is wearing a %f dress",
         "variants": [
-            "red", 
-            "orange", 
-            "yellow", 
-            "green", 
-            "blue", 
-            "purple", 
-            "pink", 
-            "black", 
+            "red",
+            "orange",
+            "yellow",
+            "green",
+            "blue",
+            "purple",
+            "pink",
+            "black",
             "white",
             "brown",
             "patterned",
@@ -70,6 +85,20 @@
         ],
         "difficulty": "medium",
         "icons": [
+            "red-circle",
+            "orange-circle",
+            "yellow-circle",
+            "green-circle",
+            "blue-circle",
+            "purple-circle",
+            "pink-heart",
+            "black-circle",
+            "white-circle",
+            "brown-circle",
+            "dress",
+            "dress",
+            "blossom",
+            "dress",
             "dress"
         ]
     },
@@ -82,6 +111,7 @@
         ],
         "difficulty": "easy",
         "icons": [
+            "white-circle",
             "t-shirt"
         ]
     },
@@ -97,6 +127,10 @@
         ],
         "difficulty": "medium",
         "icons": [
+            "black-circle",
+            "t-shirt",
+            "necktie",
+            "brown-circle",
             "t-shirt"
         ]
     },
@@ -120,7 +154,10 @@
         ],
         "difficulty": "medium",
         "icons": [
-            "prayer-beads"
+            "prayer-beads",
+            "prayer-beads",
+            "ribbon",
+            "ribbon"
         ]
     },
     "wearing-jeans": {
@@ -138,7 +175,6 @@
         "variants": [],
         "difficulty": "hard",
         "icons": [
-            "woman",
             "jeans"
         ]
     },
@@ -165,8 +201,21 @@
         "difficulty": "easy",
         "always-repeatable": true,
         "icons": [
-            "infinity",
-            "red-heart"
+            "latin-cross",
+            "folded-hands",
+            "folded-hands",
+            "latin-cross",
+            "open-book",
+            "speaking-head",
+            "red-heart",
+            "fork-and-knife-with-plate",
+            "money-bag",
+            "wrapped-gift",
+            "sparkles",
+            "baby-angel",
+            "globe-showing-americas",
+            "people-hugging",
+            "handshake"
         ]
     },
     "general-citation": {
@@ -182,7 +231,12 @@
         ],
         "difficulty": "easy",
         "icons": [
-            "man-kneeling"
+            "speaking-head",
+            "scroll",
+            "open-book",
+            "studio-microphone",
+            "church",
+            "microphone"
         ]
     },
     "scripture-citation": {
@@ -198,7 +252,12 @@
         ],
         "difficulty": "medium",
         "icons": [
-            "notebook"
+            "blue-book",
+            "green-book",
+            "closed-book",
+            "notebook",
+            "orange-book",
+            "studio-microphone"
         ]
     },
     "interruptions": {
@@ -211,8 +270,9 @@
         ],
         "difficulty": "hard",
         "icons": [
-            "butterfly",
-            "mobile-phone"
+            "mobile-phone",
+            "face-with-medical-mask",
+            "mosquito"
         ]
     },
     "interruptions-children": {
@@ -224,7 +284,8 @@
         ],
         "difficulty": "medium",
         "icons": [
-            "child"
+            "crying-face",
+            "children-crossing"
         ]
     },
     "speaker-gender": {
@@ -253,10 +314,10 @@
         "difficulty": "medium",
         "icons": [
             "child",
-            "man",
-            "woman",
-            "old-man",
-            "old-woman"
+            "student",
+            "person",
+            "person",
+            "older-person"
         ]
     },
     "speaker-group": {
@@ -276,7 +337,16 @@
         ],
         "difficulty": "hard",
         "icons": [
-            "church"
+            "child",
+            "boy",
+            "open-book",
+            "folded-hands",
+            "hammer",
+            "envelope",
+            "glowing-star",
+            "man",
+            "man-white-hair",
+            "woman"
         ]
     },
     "group-speakers": {
@@ -290,7 +360,10 @@
         ],
         "difficulty": "hard",
         "icons": [
-            "children-crossing"
+            "people-hugging",
+            "children-crossing",
+            "family",
+            "couple-with-heart-woman-man"
         ]
     },
     "activity-mentioned": {
@@ -307,7 +380,13 @@
         ],
         "difficulty": "hard",
         "icons": [
-            "party-popper"
+            "studio-microphone",
+            "people-hugging",
+            "camping",
+            "party-popper",
+            "handshake",
+            "house",
+            "musical-notes"
         ]
     },
     "service": {
@@ -319,7 +398,8 @@
         ],
         "difficulty": "medium",
         "icons": [
-            "service-dog"
+            "handshake",
+            "microphone"
         ]
     },
     "free": {

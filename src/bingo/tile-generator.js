@@ -40,11 +40,11 @@ export class TileGenerator {
         const mediumLimit = easyLimit + map.mediumWeight;
         const hardLimit = 100; // Equiv to easyLimit + mediumLimit + map["hardWeight"]
 
-        if (difficultyRanking < easyLimit) {
+        if (difficultyRanking <= easyLimit) {
             return "easy";
-        } else if (difficultyRanking < mediumLimit) {
+        } else if (difficultyRanking <= mediumLimit) {
             return "medium";
-        } else if (difficultyRanking < hardLimit) {
+        } else if (difficultyRanking <= hardLimit) {
             return "hard";
         }
     }
@@ -64,11 +64,13 @@ export class TileGenerator {
         const [selectedKey, selectedTile] = matchingTiles[randomIndex];
 
         let name = selectedTile.name;
+        let icon = selectedTile.icons?.[0] ?? null;
         const variants = selectedTile.variants ?? [];
 
         if (variants.length > 0) {
             const variantIndex = Math.floor(Math.random() * variants.length);
             const selectedVariant = variants[variantIndex];
+            icon = selectedTile.icons?.[variantIndex] ?? icon;
 
             name = name.replace(/%[sf]/g, (placeholder) => {
                 if (placeholder === "%s") {
@@ -78,6 +80,6 @@ export class TileGenerator {
                 return selectedVariant});
         }
 
-        return {...selectedTile, id: selectedKey, name}; // This is the item info that you then use to fill in the name field, etc
+        return {...selectedTile, id: selectedKey, name, icon}; // This is the item info that you then use to fill in the name field, etc
     }
 };
