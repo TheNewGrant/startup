@@ -23,10 +23,16 @@ export function Bingo(properties) {
   );
   const scoreID = React.useRef("");
 
-  const {loadout, difficulty, repeatsAllowed = false} = properties.settings;
+  const {
+    loadout,
+    difficulty,
+    repeatsAllowed = false,
+    focusMode = false,
+  } = properties.settings;
   const [tiles, setTiles] = React.useState([]);
   const [tileError, setTileError] = React.useState("");
   const [readyBoard, setReadyBoard] = React.useState("");
+  const [focusHidden, setFocusHidden] = React.useState(false);
   const boardKey = JSON.stringify([
     properties.userName,
     properties.gameID,
@@ -152,6 +158,39 @@ export function Bingo(properties) {
     score,
     multiBingoBonuses
   ]);
+
+  // Focus Mode Effect
+  React.useEffect(() => {
+    setFocusHidden(false);
+
+    // Start the cycle only once the current board is ready.
+    if (!focusMode || readyBoard !== boardKey) {
+      return;
+    }
+
+    const visibleDuration = 60 * 1000;     // 1 minute
+    const hiddenDuration = 5 * 60 * 1000;  // 5 minutes
+    // const visibleDuration = 5 * 1000;   // 5 seconds
+    // const hiddenDuration = 10 * 1000;   // 10 seconds
+    const cycleDuration = visibleDuration + hiddenDuration;
+    const startedAt = Date.now();
+
+    function updateVisibility() {
+      const elapsed = Date.now() - startedAt;
+      const positionInCycle = elapsed % cycleDuration;
+
+      setFocusHidden(positionInCycle >= visibleDuration);
+    }
+
+    const timer = window.setInterval(updateVisibility, 1000);
+
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, [focusMode, readyBoard, boardKey]);
+
+  const boardIsHidden =
+    focusMode && readyBoard === boardKey && focusHidden;
 
   function countFilled(newBoard) {
     let fill = 0;
@@ -329,7 +368,13 @@ export function Bingo(properties) {
     <section id="board-section" className="bg-gray-200 dark:bg-gray-500 dark:text-white">
       {/*Bingo Table: The images in each square come from the API I intend to use (Iconify)*/}
       {tileError && <p role="alert">{tileError}</p>}
-      {!tileError && <table id="bingo-board" className="bg-white dark:bg-gray-600">
+      {!tileError && <table
+        id="bingo-board"
+        className={`bg-white dark:bg-gray-600 ${
+          boardIsHidden ? "focus-hidden" : ""
+        }`}
+        aria-hidden={boardIsHidden ? true : undefined}
+      >
         <caption>Bingo Board</caption>
         <tr>
           <BingoTile tileInfo = {tiles[0]} corner = {"upper-left"} row = {0} col={0} onBoardChange={handleBoardChange} board={bingoBoard}>

@@ -287,3 +287,14 @@ input {
     margin: 0;
     overflow-wrap: anywhere;
 }
+
+/* Hide tile contents without changing the board's layout. */
+#bingo-board.focus-hidden button {
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.focus-mode-status {
+  margin: 0.75rem 0;
+  text-align: center;
+}
