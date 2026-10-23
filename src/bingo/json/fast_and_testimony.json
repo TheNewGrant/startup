@@ -14,7 +14,10 @@
             "white",
             "brown"
         ],
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "icons": [
+            "hollow-red-circle"
+        ]
     },
     "tie-color": {
         "name": "%s tie",
@@ -34,7 +37,10 @@
             "solid-color",
             "floral"
         ],
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "icons": [
+            "necktie"
+        ]
     },
     "dress-color": {
         "name": "%s dress",
@@ -56,7 +62,10 @@
             "short",
             "long"
         ],
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "icons": [
+            "dress"
+        ]
     },
     "church-shirt-easy": {
         "name": "%s shirt",
@@ -65,7 +74,10 @@
             "white",
             "non-white"
         ],
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "icons": [
+            "t-shirt"
+        ]
     },
     "church-shirt-medium": {
         "name": "%s shirt",
@@ -77,13 +89,19 @@
             "brown",
             "non-button-downed"
         ],
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "icons": [
+            "t-shirt"
+        ]
     },
     "wearing-glasses": {
         "name": "Wearing glasses",
         "description": "The speaker is wearing glasses",
         "variants": [],
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "icons": [
+            "glasses"
+        ]
     },
     "wearing-jewelry": {
         "name": "Wearing %f",
@@ -94,19 +112,29 @@
             "bow",
             "bowtie"
         ],
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "icons": [
+            "prayer-beads"
+        ]
     },
     "wearing-jeans": {
         "name": "Wearing jeans",
         "description": "The speaker is wearing jeans",
         "variants": [],
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "icons": [
+            "jeans"
+        ]
     },
     "female-wearing-jeans": {
         "name": "Female wearing jeans",
         "description": "A female speaker is wearing jeans",
         "variants": [],
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "icons": [
+            "woman",
+            "jeans"
+        ]
     },
     "tesimony-topic": {
         "name": "Testimony topic: %s",
@@ -129,7 +157,11 @@
             "service"
         ],
         "difficulty": "easy",
-        "always-repeatable": true
+        "always-repeatable": true,
+        "icons": [
+            "infinity",
+            "red-heart"
+        ]
     },
     "general-citation": {
         "name": "%s cited",
@@ -142,7 +174,10 @@
             "ward leader",
             "previous speaker"
         ],
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "icons": [
+            "man-kneeling"
+        ]
     },
     "scripture-citation": {
         "name": "%s cited",
@@ -155,7 +190,10 @@
             "pearl of great price",
             "last general conference"
         ],
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "icons": [
+            "notebook"
+        ]
     },
     "interruptions": {
         "name": "Interruption: %s",
@@ -165,7 +203,11 @@
             "coughing fit",
             "annoying insect"
         ],
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "icons": [
+            "butterfly",
+            "mobile-phone"
+        ]
     },
     "interruptions-children": {
         "name": "Interruption: %s",
@@ -174,7 +216,10 @@
             "child cries",
             "wandering children"
         ],
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "icons": [
+            "child"
+        ]
     },
     "speaker-gender": {
         "name": "%s speaker",
@@ -183,7 +228,11 @@
             "male",
             "female"
         ],
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "icons": [
+            "male-sign",
+            "female-sign"
+        ]
     },
     "speaker-age": {
         "name": "%s speaker",
@@ -195,7 +244,14 @@
             "adult",
             "elderly"
         ],
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "icons": [
+            "child",
+            "man",
+            "woman",
+            "old-man",
+            "old-woman"
+        ]
     },
     "speaker-group": {
         "name": "%s speaker",
@@ -212,7 +268,10 @@
             "high priest",
             "relief society"
         ],
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "icons": [
+            "church"
+        ]
     },
     "group-speakers": {
         "name": "%s speakers",
@@ -223,7 +282,10 @@
             "grandparent and child",
             "spouse"
         ],
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "icons": [
+            "children-crossing"
+        ]
     },
     "activity-mentioned": {
         "name": "Activity: %s",
@@ -237,7 +299,10 @@
             "family home evening",
             "stake dance"
         ],
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "icons": [
+            "party-popper"
+        ]
     },
     "service": {
         "name": "Service: %s",
@@ -246,18 +311,27 @@
             "Help up the stairs",
             "Help to bear testimony"
         ],
-        "difficulty": "medium"
+        "difficulty": "medium",
+        "icons": [
+            "service-dog"
+        ]
     },
     "free": {
         "name": "Free Space",
         "description": "Free space, nothing required to check this one off",
         "variants": [],
-        "difficulty": "easy"
+        "difficulty": "easy",
+        "icons": [
+            "white-flag"
+        ]
     },
     "bear-your-own": {
         "name": "Bear your testimony",
         "description": "Bear your testimony",
         "variants": [],
-        "difficulty": "hard"
+        "difficulty": "hard",
+        "icons": [
+            "love-you-gesture"
+        ]
     }
 }
