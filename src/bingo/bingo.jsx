@@ -1,7 +1,10 @@
 import React from 'react';
 import './bingo.css';
+import { TileGenerator } from './tile-generator'
+import { BingoTile } from './bingo-tile';
 
-export function Bingo() {
+export function Bingo(properties) {
+
   return (
     <main className="dark:bg-slate-600">
     <section id="realtime-updates" className="bg-gray-200 dark:bg-gray-500 dark:text-white">
@@ -23,7 +26,7 @@ export function Bingo() {
       <br/>
       <div>
         <label htmlFor="count">Score</label>
-        <input className="bg-white dark:bg-gray-700" type="text" id="count" value="--" readonly />
+        <input className="bg-white dark:bg-gray-700" type="text" id="count" value="--" readOnly />
       </div>
 
     </section>
@@ -32,190 +35,89 @@ export function Bingo() {
       <table id="bingo-board" className="bg-white dark:bg-gray-600">
         <caption>Bingo Board</caption>
         <tr>
-          <td className="bingo-tile" style={{ borderTopLeftRadius: "20px" }}>
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/alarm-clock.svg" alt="alarm clock"/>
-              <p>Neighbor falls asleep</p>
+          <BingoTile settings = {properties.settings} corner = {"upper-left"}>
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/bacon.svg" alt="bacon"/>
-              <p>Child caught snacking</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/boy-medium.svg" alt="boy"/>
-              <p>Boy bears testimony</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/balloon.svg" alt="balloon"/>
-              <p>Speaker off topic</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile" style={{ borderTopRightRadius: "20px"}}>
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/bat.svg" alt="bat"/>
-              <p>Animal/Insect distraction</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} corner = {"upper-right"}>
 
-            </button>
-          </td>
+          </BingoTile>
         </tr>
         <tr>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/blue-book.svg" alt="blue book"/>
-              <p>Book of Mormon cited</p>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/call-me-hand.svg" alt="call me hand"/>
-              <p>Phone rings</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/castle.svg" alt="castle"/>
-              <p>Topic: Heaven</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/cinema.svg" alt="cinema"/>
-              <p>Church activity mentioned</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/crayon.svg" alt="crayon"/>
-              <p>Child coloring</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
+          </BingoTile>
         </tr>
         <tr>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/dna.svg" alt="dna"/>
-              <p>Topic: Family History</p>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/face-with-raised-eyebrow.svg" alt="face with raised eyebrow"/>
-              <p>Questionable topic mentioned</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/female-sign.svg" alt="female sign"/>
-              <p>Woman bears testimony</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/flamingo.svg" alt="flamingo"/>
-              <p>Pink article of clothing</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/frowning-face-with-open-mouth.svg" alt="frowning face with open mouth"/>
-              <p>Shocking turn of events</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
+          </BingoTile>
         </tr>
         <tr>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/glasses.svg" alt="glasses"/>
-              <p>Glasses worn by speaker</p>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/guitar.svg" alt="guitar"/>
-              <p>Musical Number</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false"
-                src="https://api.iconify.design/fluent-emoji-flat/hand-with-index-finger-and-thumb-crossed-medium.svg" alt="hand with index finger and thumb crossed"/>
-              <p>Coincidence/luck mentioned</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/heart-hands-medium.svg" alt="heart hands"/>
-              <p>Topic: Love</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/hospital.svg" alt="hospital"/>
-              <p>Miracle story</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} >
 
-            </button>
-          </td>
+          </BingoTile>
         </tr>
         <tr>
-          <td className="bingo-tile" style={{borderBottomLeftRadius: "20px"}}>
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/infinity.svg" alt="infinity"/>
-              <p>Topic: Atonement</p>
+          <BingoTile settings = {properties.settings} corner = {"lower-left"}>
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/joker.svg" alt="joker"/>
-              <p>Joke told (laughter required)</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings}>
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/knot.svg" alt="knot"/>
-              <p>Bow/Bracelet/Necklace article </p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings}>
 
-            </button>
-          </td>
-          <td className="bingo-tile">
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/laptop.svg" alt="laptop"/>
-              <p>Phone used on podium</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings}>
 
-            </button>
-          </td>
-          <td className="bingo-tile" style={{ borderBottomRightRadius: "20px" }}>
-            <button className="active:bg-gray-300 dark:active:bg-gray-700">
-              <img draggable="false" src="https://api.iconify.design/fluent-emoji-flat/light-blue-heart.svg" alt="light blue heart"/>
-              <p>Topic: Service</p>
+          </BingoTile>
+          <BingoTile settings = {properties.settings} corner = {"lower-right"}>
 
-            </button>
-          </td>
+          </BingoTile>
         </tr>
       </table>
     </section>
