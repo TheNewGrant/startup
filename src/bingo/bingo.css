@@ -257,3 +257,25 @@ input {
         font-size: clamp(0.32rem, 2.7vw, 0.5rem);
     }
 }
+
+/* Let each row stretch its tiles to the same height. */
+#bingo-board tr {
+    align-items: stretch;
+}
+
+/* Fill the row vertically without percentage heights. */
+#bingo-board td {
+    height: auto;
+    min-height: 0;
+    min-width: 0;
+    flex: 1 1 0;
+
+    align-items: stretch;
+    justify-content: center;
+}
+
+/* Fill the cell vertically without a percentage height. */
+#bingo-board td > button {
+    height: auto;
+    align-self: stretch;
+}
