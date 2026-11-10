@@ -1,4 +1,4 @@
-// Import statements:
+// --- IMPORTS ---
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
@@ -28,7 +28,7 @@ app.use(express.static('public'));
 var apiRouter = express.Router();
 app.use('/api', apiRouter);
 
-// Create a user registration route
+// Create a user route
 apiRouter.post('/auth/create', async (req, res) => {
     if (await findUser('email', req.body.email)) {
         res.status(409).send({ msg: 'Existing user' });
@@ -109,7 +109,7 @@ async function findUser(field, value) {
 // setAuthCookie in the HTTP response
 function setAuthCookie(res, authToken) {
   res.cookie(authCookieName, authToken, {
-    maxAge: 1000 * 60 * 60 * 24 * 365,
+    maxAge: 1000 * 60 * 60 * 24 * 365, // 1 year
     secure: true,
     httpOnly: true,
     sameSite: 'strict',
