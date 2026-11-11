@@ -9,6 +9,7 @@ const authCookieName = 'token';
 
 // Store users in memory
 let users = [];
+let scores = [];
 
 // Set the port of this service to 4000
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -26,42 +27,42 @@ app.use(express.static('public'));
 // --- ROUTES ---
 // Create a router for API routes
 var apiRouter = express.Router();
-app.use('/api', apiRouter);
+app.use(`/api`, apiRouter);
 
 // Create a user route
 apiRouter.post('/auth/create', async (req, res) => {
-    if (await findUser('email', req.body.email)) {
-        res.status(409).send({ msg: 'Existing user' });
-    } else {
-        const user = await createUser(req.body.email, req.body.password);
+  if (await findUser('email', req.body.email)) {
+    res.status(409).send({ msg: 'Existing user' });
+  } else {
+    const user = await createUser(req.body.email, req.body.password);
 
-        setAuthCookie(res, user.token);
-        res.send({ email: user.email });
-    }
+    setAuthCookie(res, user.token);
+    res.send({ email: user.email });
+  }
 });
 
 // Login route
 apiRouter.post('/auth/login', async (req, res) => {
-    const user = await findUser('email', req.body.email);
-    if (user) {
-        if (await bcrypt.compare(req.body.password, user.password)) {
-            user.token = uuid.v4();
-            setAuthCookie(res, user.token);
-            res.send({ email: user.email });
-            return;
-        }
+  const user = await findUser('email', req.body.email);
+  if (user) {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      user.token = uuid.v4();
+      setAuthCookie(res, user.token);
+      res.send({ email: user.email });
+      return;
     }
-    res.status(401).send({ msg: 'Unauthorized' });
+  }
+  res.status(401).send({ msg: 'Unauthorized' });
 });
 
 // Logout route
 apiRouter.delete('/auth/logout', async (req, res) => {
-    const user = await findUser('token', req.cookies[authCookieName]);
-    if (user) {
-        delete user.token;
-    }
-    res.clearCookie(authCookieName);
-    res.status(204).end();
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (user) {
+    delete user.token;
+  }
+  res.clearCookie(authCookieName);
+  res.status(204).end();
 });
 
 // Custom middleware to check if the user is authorized to call an endpoint
@@ -69,15 +70,51 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 //   This middle ware sits here so express will not continue to score endpoints
 //   unless the user is authorized
 const verifyAuth = async (req, res, next) => {
-    const user = await findUser('token', req.cookies[authCookieName]);
-    if (user) {
-        next();
-    } else {
-        res.status(401).send({ msg: 'Unauthorized' });
-    }
+  const user = await findUser('token', req.cookies[authCookieName]);
+  if (user) {
+    req.user = user;
+    next();
+  } else {
+    res.status(401).send({ msg: 'Unauthorized' });
+  }
 };
 
 // --- BASE CASES --- 
+// GetScores: the ten highest current board scores across all users.
+apiRouter.get('/scores', verifyAuth, (_req, res) => {
+  res.send(scores.slice(0, 10));
+});
+
+// GetMyScores: all saved boards belonging to the authenticated user.
+apiRouter.get('/scores/me', verifyAuth, (req, res) => {
+  const userScores = scores.filter((score) => score.name === req.user.email);
+  res.send(userScores);
+});
+
+// SubmitScore: save the latest score for this user's board.
+apiRouter.post('/score', verifyAuth, (req, res) => {
+  const score = req.body;
+  if (!score || typeof score.id !== 'string' || !score.id || score.id.length > 100 ||
+      !Number.isInteger(score.score) || score.score < 0 ||
+      !Number.isInteger(score.fill) || score.fill < 0 || score.fill > 100 || score.fill % 4 !== 0 ||
+      !Number.isInteger(score.bingos) || score.bingos < 0 || score.bingos > 12) {
+    res.status(400).send({ msg: 'Invalid score' });
+    return;
+  }
+
+  const newScore = {
+    id: score.id,
+    name: req.user.email,
+    score: score.score,
+    fill: score.fill,
+    bingos: score.bingos,
+    date: new Date().toLocaleDateString(),
+  };
+
+  scores = updateScores(newScore);
+  res.send(scores.slice(0, 10));
+});
+
 // Default error handler
 app.use(function (err, req, res, next) {
   res.status(500).send({ type: err.name, message: err.message });
@@ -89,6 +126,30 @@ app.use((_req, res) => {
 });
 
 // --- HELPER FUNCTIONS --- --- FOR USER MANAGEMENT ---
+
+// Replace this board's previous entry, then insert it in score order.
+function updateScores(newScore) {
+  scores = scores.filter((prevScore) =>
+    prevScore.id !== newScore.id || prevScore.name !== newScore.name
+  );
+
+  let found = false;
+  for (const [i, prevScore] of scores.entries()) {
+    if (newScore.score > prevScore.score) {
+      scores.splice(i, 0, newScore);
+      found = true;
+      break;
+    }
+  }
+
+  if (!found) {
+    scores.push(newScore);
+  }
+
+  // Keep all boards for personal history; GET /scores returns only ten.
+  return scores;
+}
+
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 
