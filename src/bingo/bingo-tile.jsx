@@ -1,9 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './bingo.css';
 
 export function BingoTile(properties) {
     const tileInfo = properties.tileInfo;
     const icon = tileInfo?.icon;
+    const [iconImage, setIconImage] = useState(null);
+
+    useEffect(() => {
+        if (!icon) {
+            setIconImage(null);
+            return;
+        }
+        const controller = new AbortController();
+        let objectUrl;
+        setIconImage(null);
+
+        async function fetchIcon() {
+            try {
+                // Fetch the icon from the Iconify API
+                const response = await fetch(
+                    `https://api.iconify.design/fluent-emoji-flat/${encodeURIComponent(icon)}.svg`,
+                    { signal: controller.signal }
+                );
+                if (!response.ok) {
+                    throw new Error(`Icon request failed: ${response.status}`);
+                }
+                const imageBlob = await response.blob();
+                if (controller.signal.aborted) return;
+                objectUrl = URL.createObjectURL(imageBlob);
+                setIconImage({ name: icon, url: objectUrl });
+            } catch (error) {
+                if (error.name !== "AbortError") {
+                    console.error(`Could not load icon "${icon}":`, error);
+                }
+            }
+        }
+
+        fetchIcon();
+        return () => {
+            controller.abort();
+            if (objectUrl) URL.revokeObjectURL(objectUrl);
+        };
+    }, [icon]);
     const marked = !properties.board[properties.row][properties.col];
 
     function cornerStyle() {
@@ -39,10 +77,10 @@ export function BingoTile(properties) {
                     disabled = {!tileInfo}
                     onClick = {() => {updateCell(properties.row, properties.col, !properties.board[properties.row][properties.col])}}
             >
-                {icon && (
+                {iconImage && iconImage.name === icon && (
                     <img
-                    src={`https://api.iconify.design/fluent-emoji-flat/${icon}.svg`}
-                    alt={icon}
+                        src={iconImage.url}
+                        alt={icon}
                     />
                 )}
               <p>{tileInfo?.name ?? "Loading..."}</p>
