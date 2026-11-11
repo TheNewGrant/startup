@@ -3,89 +3,104 @@ import './scores.css';
 
 export function Scores() {
   const [scores, setScores] = React.useState([]);
+  const [myScores, setMyScores] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState('');
 
-  // Demonstrates calling a service asynchronously so that
-  // React can properly update state objects with the results.
   React.useEffect(() => {
-    const scoresText = localStorage.getItem('scores');
-    if (scoresText) {
-      setScores(JSON.parse(scoresText));
+    let cancelled = false;
+
+    async function loadScores() {
+      try {
+        const response = await fetch('/api/scores');
+        if (!response.ok) {
+          throw new Error(response.status === 401
+            ? 'Please log in to view scores.' : 'Could not load global scores.');
+        }
+        const scores = await response.json();
+
+        const myResponse = await fetch('/api/scores/me');
+        if (!myResponse.ok) {
+          throw new Error(myResponse.status === 401
+            ? 'Please log in to view scores.' : 'Could not load your scores.');
+        }
+        const myScores = await myResponse.json();
+
+        if (!cancelled) {
+          setScores(scores);
+          setMyScores(myScores);
+        }
+      } catch (err) {
+        if (!cancelled) {
+          setError(err.message);
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      }
     }
+
+    loadScores();
+    return () => { cancelled = true; };
   }, []);
 
-  // Demonstrates rendering an array with React
-  const personalRows = [];
+  // Build table rows using the same loop style as the example project.
   const scoreRows = [];
-  if (scores.length) {
-    for (const [i, score] of scores.entries()) {
-      const bingos = score.bingos ?? score.score;
-      scoreRows.push(
-        <tr key={i}>
-          <td>{i + 1}</td>
-          <td>{score.name}</td>
-          <td>{score.score}</td>
-          <td>{score.fill}</td>
-          <td>{bingos} {bingos === 1 ? "bingo" : "bingos"}{score.fill === 100 ? " - Blackout!" : ""}</td>
-          <td>{score.date}</td>
-        </tr>
-      );
-      personalRows.push(
-        <tr key={i}>
-          <td>{i + 1}</td>
-          <td>{score.score}</td>
-          <td>{score.fill}</td>
-          <td>{bingos} {bingos === 1 ? "bingo" : "bingos"}{score.fill === 100 ? " - Blackout!" : ""}</td>
-          <td>{score.date}</td>
-        </tr>
-      )
-    }
-  } else {
+  for (const [i, score] of scores.entries()) {
     scoreRows.push(
-      <tr key='0'>
-        <td colSpan='4'>Be the first to score</td>
+      <tr key={score.name + ':' + score.id}>
+        <td>{i + 1}</td>
+        <td>{score.name.split('@')[0]}</td>
+        <td>{score.score}</td>
+        <td>{score.fill}%</td>
+        <td>{score.bingos}</td>
+        <td>{score.date}</td>
       </tr>
     );
   }
+  if (!scoreRows.length) {
+    scoreRows.push(<tr key='empty'><td colSpan='6'>Be the first to score</td></tr>);
+  }
+
+  const myScoreRows = [];
+  for (const [i, score] of myScores.entries()) {
+    myScoreRows.push(
+      <tr key={score.id}>
+        <td>{i + 1}</td>
+        <td>{score.score}</td>
+        <td>{score.fill}%</td>
+        <td>{score.bingos}</td>
+        <td>{score.date}</td>
+      </tr>
+    );
+  }
+  if (!myScoreRows.length) {
+    myScoreRows.push(<tr key='empty'><td colSpan='5'>You have no saved scores yet</td></tr>);
+  }
 
   return (
-    <main className="dark:bg-slate-600">
-      <section id="global-scores" className="bg-yellow-200">
-        <h1 className="scores-label">Global Scores</h1>
-        {/* This is a preview of how both Websocket and MongoDB will be used once implemented */}
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Score</th>
-              <th>Fill %</th>
-              <th># Bingos</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {scoreRows}
-          </tbody>
-        </table>
-      </section>
-      <section id="personal-scores" className="bg-red-200">
-        <h1 className="scores-label">Your scores</h1>
-        {/*  This is a preview of how MongoDB will be implemented to see past scores */}
-        <table>
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Score</th>
-              <th>Fill %</th>
-              <th># Bingos</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            {personalRows}
-          </tbody>
-        </table>
-      </section>
+    <main id='scores-page' className='bg-gray-200 dark:bg-gray-500 dark:text-white'>
+      <h1>Global Scores</h1>
+      {loading && <p>Loading scores...</p>}
+      {error && <p role='alert'>{error}</p>}
+      {!loading && !error && (
+        <>
+          <table className='bg-white dark:bg-gray-600'>
+            <thead>
+              <tr><th>#</th><th>Name</th><th>Score</th><th>Fill %</th><th># Bingos</th><th>Date</th></tr>
+            </thead>
+            <tbody>{scoreRows}</tbody>
+          </table>
+          <h1>Your scores</h1>
+          <table className='bg-white dark:bg-gray-600'>
+            <thead>
+              <tr><th>#</th><th>Score</th><th>Fill %</th><th># Bingos</th><th>Date</th></tr>
+            </thead>
+            <tbody>{myScoreRows}</tbody>
+          </table>
+        </>
+      )}
     </main>
   );
 }
