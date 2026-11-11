@@ -22,6 +22,8 @@ export function Bingo(properties) {
     Array.from({length: 5}, () => Array(5).fill(0))
   );
   const scoreID = React.useRef("");
+  const scoreRequests = React.useRef(Promise.resolve());
+  const [scoreError, setScoreError] = React.useState("");
 
   const {
     loadout,
@@ -71,7 +73,7 @@ export function Bingo(properties) {
       setPercentFilled(savedGame.percentFilled);
       setScore(savedGame.score);
       setMultiBingoBonuses(savedGame.multiBingoBonuses);
-      scoreID.current = savedGame.scoreID;
+      scoreID.current = savedGame.scoreID || crypto.randomUUID();
       setReadyBoard(boardKey);
 
       return () => cancelled = true;
@@ -246,51 +248,46 @@ export function Bingo(properties) {
     return newTotal;
   }
 
-    async function saveScore(score, newPercentFilled, bingos, announceScore) {
-      const date = new Date().toLocaleDateString();
-      const newScore = {
-        id: scoreID.current,
-        name: properties.userName,
-        score: score,
-        fill: newPercentFilled,
-        bingos: bingos,
-        date: date
-      };
+  async function saveScore(score, newPercentFilled, bingos, announceScore) {
+    const date = new Date().toLocaleDateString();
+    const newScore = {
+      id: scoreID.current,
+      name: properties.userName,
+      score: score,
+      fill: newPercentFilled,
+      bingos: bingos,
+      date: date,
+    };
 
-      if (announceScore) {
-        const eventType = newPercentFilled === 100 ? GameEvent.End : GameEvent.NewScore;
-        GameNotifier.broadcastEvent(properties.userName, eventType, newScore);
+    // Send updates in click order so an older score cannot arrive last.
+    scoreRequests.current = scoreRequests.current.then(async () => {
+      try {
+        const response = await fetch('/api/score', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify(newScore),
+        });
+
+        if (!response.ok) {
+          if (response.status === 401) {
+            throw new Error('Please log in to save scores.');
+          }
+          throw new Error('Could not save your score to the service.');
+        }
+
+        setScoreError('');
+
+        if (announceScore) {
+          const eventType = newPercentFilled === 100 ? GameEvent.End : GameEvent.NewScore;
+          GameNotifier.broadcastEvent(newScore.name, eventType, newScore);
+        }
+      } catch (err) {
+        console.error('Could not save score', err);
+        setScoreError(err.message);
       }
+    });
 
-      updateScoresLocal(newScore);
-    }
-
-  function updateScoresLocal(newScore) {
-    let scores = [];
-    const scoresText = localStorage.getItem('scores');
-    if (scoresText) {
-      scores = JSON.parse(scoresText);
-    }
-    scores = scores.filter(prevScore => prevScore.id !== newScore.id);
-
-    let found = false;
-    for (const [i, prevScore] of scores.entries()) {
-      if (newScore.score > prevScore.score) {
-        scores.splice(i, 0, newScore);
-        found = true;
-        break;
-      }
-    }
-
-    if (!found) {
-      scores.push(newScore);
-    }
-
-    if (scores.length > 10) {
-      scores.length = 10;
-    }
-
-    localStorage.setItem('scores', JSON.stringify(scores));
+    await scoreRequests.current;
   }
 
     function handleBoardChange(updateBoard) {
@@ -355,6 +352,7 @@ export function Bingo(properties) {
       <br/>
       <hr/>
       <br/>
+      {scoreError && <p role="alert">{scoreError}</p>}
       <div>
         <label htmlFor="count">Score</label>
         <input className="bg-white dark:bg-gray-700" type="text" id="count" value={score} readOnly />
