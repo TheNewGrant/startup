@@ -66,6 +66,8 @@ apiRouter.delete('/auth/logout', async (req, res) => {
 
 // Custom middleware to check if the user is authorized to call an endpoint
 // This will be used for displaying scores
+//   This middle ware sits here so express will not continue to score endpoints
+//   unless the user is authorized
 const verifyAuth = async (req, res, next) => {
     const user = await findUser('token', req.cookies[authCookieName]);
     if (user) {
@@ -100,6 +102,8 @@ async function createUser(email, password) {
   return user;
 }
 
+// Helper function to help find a value given a specific field
+// returns the user associated with the field and value, or null if not found
 async function findUser(field, value) {
   if (!value) return null;
 
