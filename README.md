@@ -126,14 +126,14 @@ add extra things I didn't have time and energy for.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Node.js/Express HTTP service** - I did not complete this part of the deliverable.
-- [ ] **Static middleware for frontend** - I did not complete this part of the deliverable.
-- [ ] **Calls to third party endpoints** - I did not complete this part of the deliverable.
-- [ ] **Backend service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Frontend calls service endpoints** - I did not complete this part of the deliverable.
-- [ ] **Supports registration, login, logout, and restricted endpoint** - I did not complete this part of the deliverable.
-- [ ] **Uses BCrypt to hash passwords** - I did not complete this part of the deliverable.
+- [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [X] **Node.js/Express HTTP service** - The default port is 4000 and I installed express with npm.
+- [X] **Static middleware for frontend** - The static middleware is in service/index.js - it takes from the public/ folder
+- [X] **Calls to third party endpoints** - While I had originally just called the URL of the 3rd party API I've chosen, I now use fetch() to get the values. You can find it in bingo-tile.jsx, I call Iconify for its .svg icons for each bingo tile.
+- [X] **Backend service endpoints** - Endpoints are in service/index.js for auth and scores.
+- [X] **Frontend calls service endpoints** - Bingo, Bingo-Tile, Scores, Authorized and Unauthorized.jsx all call the service endpoints for login/logout, scores setting/viewing and getting the 3rd party icons.
+- [X] **Supports registration, login, logout, and restricted endpoint** - Login supports creating, logging in & out, and the scores are restricted unless the user is properly logged in
+- [X] **Uses BCrypt to hash passwords** - BCrypt hashes password in createUser in the service index.js
 
 ## 🚀 DB deliverable
 
