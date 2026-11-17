@@ -3,6 +3,7 @@ const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const express = require('express');
 const uuid = require('uuid');
+const DB = require('./database.js');
 const app = express();
 
 const authCookieName = 'token';
@@ -92,7 +93,7 @@ apiRouter.get('/scores/me', verifyAuth, (req, res) => {
 });
 
 // SubmitScore: save the latest score for this user's board.
-apiRouter.post('/score', verifyAuth, (req, res) => {
+apiRouter.post('/score', verifyAuth, async (req, res) => {
   const score = req.body;
   if (!score || typeof score.id !== 'string' || !score.id || score.id.length > 100 ||
       !Number.isInteger(score.score) || score.score < 0 ||
@@ -111,8 +112,15 @@ apiRouter.post('/score', verifyAuth, (req, res) => {
     date: new Date().toLocaleDateString(),
   };
 
-  scores = updateScores(newScore);
-  res.send(scores.slice(0, 10));
+  try {
+    await DB.updateScore(newScore);
+
+    const scores = await DB.getHighScores(newScore);
+    res.send(scores);
+  } catch (err) {
+    console.error('Failed to save score:', error);
+    res.status(500).send({ msg: 'Unable to save score' });
+  }
 });
 
 // Default error handler
@@ -126,29 +134,6 @@ app.use((_req, res) => {
 });
 
 // --- HELPER FUNCTIONS --- --- FOR USER MANAGEMENT ---
-
-// Replace this board's previous entry, then insert it in score order.
-function updateScores(newScore) {
-  scores = scores.filter((prevScore) =>
-    prevScore.id !== newScore.id || prevScore.name !== newScore.name
-  );
-
-  let found = false;
-  for (const [i, prevScore] of scores.entries()) {
-    if (newScore.score > prevScore.score) {
-      scores.splice(i, 0, newScore);
-      found = true;
-      break;
-    }
-  }
-
-  if (!found) {
-    scores.push(newScore);
-  }
-
-  // Keep all boards for personal history; GET /scores returns only ten.
-  return scores;
-}
 
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
