@@ -54,8 +54,8 @@ function getHighScores() {
 }
 
 // This gets the highest scores of the current user
-function getUserHighScores(user) {
-  const query = { score: { $gt: 0, $lt: 900 }, name: user };
+function getUserHighScores(email) {
+  const query = { score: { $gt: 0, $lt: 900 }, name: email };
   const options = {
     sort: { score: -1 },
     limit: 10,
