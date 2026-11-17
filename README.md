@@ -11,9 +11,9 @@ Have you ever gone to a church service and after a few hours of sitting there li
 ### Design
 Here are designs for the webpage fitted for computer, laptop, and mobile screen sizes:
 
-![Login Page](images/bingo-login.jpg)
-![Setup Page](images/bingo-setup.jpg)
-![Game Page](images/bingo-game.jpg)
+![Login Page](public/images/bingo-login.jpg)
+![Setup Page](public/images/bingo-setup.jpg)
+![Game Page](public/images/bingo-game.jpg)
 
 Here is a diagram that shows how people would interact with the backend to see each other's scores.
 
