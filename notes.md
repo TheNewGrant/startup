@@ -15,6 +15,8 @@ This file represents what I have learned about web programming. And truly, I can
 
 > NOTE: deployFiles.sh is now deployReact.sh. Use the same command but with a slightly different vocab ```./deployReact.sh -k <yourpemkey> -h <yourdomain> -s startup```
 
+> NOTE: deployReact.sh is now deployService.sh. Use the same command but with a slightly different vocab ```./deployService.sh -k <yourpemkey> -h <yourdomain> -s startup```
+
 ## Helpful links
 
 - [Course instruction](https://github.com/webprogramming260)
