@@ -139,9 +139,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
-- [ ] **Stores data in MongoDB** - I did not complete this part of the deliverable.
-- [ ] **Stores credentials in MongoDB** - I did not complete this part of the deliverable.
+- [X] I completed the prerequisites for this deliverable (Simon deployed, GitHub link, Git commits)
+- [X] **Stores data in MongoDB** - Each bingo game's score data is saved to mongodb under scores - this is used to display the top scores of every user and the top scores of the active user
+- [X] **Stores credentials in MongoDB** - Each bingo user's data (name and token) is saved to mongodb under user. This is used to let people log in to their previous accounts.
 
 ## 🚀 WebSocket deliverable
 
