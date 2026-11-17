@@ -42,10 +42,6 @@ async function updateUserRemoveAuth(user) {
   await userCollection.updateOne({ email: user.email }, { $unset: { token: 1 } });
 }
 
-async function addScore(score) {
-  return scoreCollection.insertOne(score);
-}
-
 // This gets the highest scores of every user
 function getHighScores() {
   const query = { score: { $gt: 0, $lt: 900 } };
@@ -68,13 +64,26 @@ function getUserHighScores(user) {
   return cursor.toArray();
 }
 
+async function addScore(score) {
+  return scoreCollection.insertOne(score);
+}
+
+// This updates the score of a user if it exists, otherwise it creates a new entry
+async function updateScore(score) {
+  const filter = { id: score.id, name: score.name };
+  const update = { $set: { score: score.score, fill: score.fill, bingos: score.bingos, date: score.date } };
+  const options = { upsert: true };
+  return scoreCollection.updateOne(filter, update, options);
+}
+
 module.exports = {
   getUser,
   getUserByToken,
   addUser,
   updateUser,
   updateUserRemoveAuth,
-  addScore,
   getHighScores,
   getUserHighScores,
+  addScore,
+  updateScore,
 };
