@@ -6,7 +6,7 @@ const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostna
 
 const client = new MongoClient(url);  // Create a client of mongoDB
 const db = client.db('startup');   // Database folder (within cluster0)
-const collection = db.collection('users');  // Grab a *file* from mongoDB 
+const userCollection = db.collection('users'); 
 
 // This will asynchronously test the connection and exit the process if it fails
 (async function testConnection() {
@@ -18,3 +18,31 @@ const collection = db.collection('users');  // Grab a *file* from mongoDB
     process.exit(1);
   }
 })();
+
+function getUser(email) {
+  return userCollection.findOne({ email: email });
+}
+
+function getUserByToken(token) {
+  return userCollection.findOne({ token: token });
+}
+
+async function addUser(user) {
+  await userCollection.insertOne(user);
+}
+
+async function updateUser(user) {
+  await userCollection.updateOne({ email: user.email }, { $set: user });
+}
+
+async function updateUserRemoveAuth(user) {
+  await userCollection.updateOne({ email: user.email }, { $unset: { token: 1 } });
+}
+
+module.exports = {
+  getUser,
+  getUserByToken,
+  addUser,
+  updateUser,
+  updateUserRemoveAuth,
+};
