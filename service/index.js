@@ -82,13 +82,14 @@ const verifyAuth = async (req, res, next) => {
 
 // --- BASE CASES --- 
 // GetScores: the ten highest current board scores across all users.
-apiRouter.get('/scores', verifyAuth, (_req, res) => {
-  res.send(scores.slice(0, 10));
+apiRouter.get('/scores', verifyAuth, async (_req, res) => {
+  const scores = await DB.getHighScores();
+  res.send(scores);
 });
 
-// GetMyScores: all saved boards belonging to the authenticated user.
-apiRouter.get('/scores/me', verifyAuth, (req, res) => {
-  const userScores = scores.filter((score) => score.name === req.user.email);
+// GetMyScores: the top ten highest scores for the current user.
+apiRouter.get('/scores/me', verifyAuth, async (req, res) => {
+  const userScores = await DB.getUserHighScores(req.user.email);
   res.send(userScores);
 });
 
@@ -115,10 +116,10 @@ apiRouter.post('/score', verifyAuth, async (req, res) => {
   try {
     await DB.updateScore(newScore);
 
-    const scores = await DB.getHighScores(newScore);
+    const scores = await DB.getHighScores();
     res.send(scores);
   } catch (err) {
-    console.error('Failed to save score:', error);
+    console.error('Failed to save score:', err);
     res.status(500).send({ msg: 'Unable to save score' });
   }
 });
@@ -134,7 +135,6 @@ app.use((_req, res) => {
 });
 
 // --- HELPER FUNCTIONS --- --- FOR USER MANAGEMENT ---
-
 async function createUser(email, password) {
   const passwordHash = await bcrypt.hash(password, 10);
 
